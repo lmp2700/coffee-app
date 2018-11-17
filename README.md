@@ -14,10 +14,9 @@ Here's how users work.
 
 These are the exposed routes and expected results.
 
-#### /auth
+#### POST /auth/register
 ```
-POST /auth/register
-Creates a user
+Purpose: Creates a user
 req.body => {
     username: String,
     email: String,
@@ -34,7 +33,7 @@ Returns on failure:
         }]
     }
 }
-Returns on succes:
+Returns on success:
 {
     status: 200,
     data: {
