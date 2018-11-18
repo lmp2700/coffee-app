@@ -7,13 +7,13 @@ const User = require('mongoose').model('User');
 //   credentials (in this case, an accessToken, refreshToken, and Google
 //   profile), and invoke a callback with a user object.
 passport.use(new GoogleTokenStrategy({
-    clientID: "640930211298-dchl0606tvv4mqul67dohpluucnacsdq.apps.googleusercontent.com",
-    clientSecret: "-JnYAnjZPgQIUoKEK4kSVTpL",
+    clientID: process.env.GOOGLE_AUTH_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
   },
   function(accessToken, refreshToken, profile, done) {
       console.log("THIS IS THE GOOGLE PROFILE")
       console.log(profile)
-       User.findOrCreate({ googleProvider: {id: profile.id}, displayName: profile.displayName }, function (err, user) {
+       User.findOrCreate({ googleProvider: {id: profile.id, accessToken, refreshToken}, displayName: profile.displayName }, function (err, user) {
          return done(err, user);
        });
   }

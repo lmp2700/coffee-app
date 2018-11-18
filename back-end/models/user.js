@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const findOrCreate = require('mongoose-findorcreate');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { Schema } = mongoose;
 
 const UserSchema = new mongoose.Schema({
@@ -11,19 +11,18 @@ const UserSchema = new mongoose.Schema({
                     partialFilterExpression: {username: {$type: 'string'}}
                 },
                 minlength: 1 },
-    password: String,
-    displayName: {
-        type: String,
-        trim: true
-    },
+    password: { type: String, select: false },
+    email: { type: String, required: true, unique: true},
+    displayName: { type: String, trim: true },
     googleProvider: {
         type: {
             id: String,
-            token: String
+            accessToken: String,
+            refreshToken: String
         },
         select: false
     },
-    roasterAuthorizations: [{type: Schema.Types.ObjectId, ref: "Roaser"}],
+    roasterAuthorizations: [{type: Schema.Types.ObjectId, ref: "Roaster"}],
     friends: [{type: Schema.Types.ObjectId, ref: "User"}]
 }, {
     timestamps: true

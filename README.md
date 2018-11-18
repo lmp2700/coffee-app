@@ -45,6 +45,31 @@ Returns on success:
 }
 ```
 
+#### POST /auth/login
+```
+Purpose: authenticates local users
+req.body => {
+    username: String,
+    password: String
+}
+Returns on success: {
+    status: 200,
+    data: {
+        user: {
+            username: String,
+            displayName: String,
+            email: String
+        }
+    }
+}
+Returns on failure: {
+    status: 500,
+    data: {
+        message: "Invalid Credentials"
+    }
+}
+```
+
 ## Front End
 
 This is a component diagram.

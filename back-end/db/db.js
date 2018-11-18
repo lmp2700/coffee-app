@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
-const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/express-planner"
+const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/coffee-app"
 mongoose.connect(mongoUri);
 
 mongoose.connection.on('connected', ()=>{

@@ -62,6 +62,8 @@ router.post('/login', (req, res, next)=>{
             return next(err);
         }
         if(!user){ //user is set to false on auth failures
+            console.log(info);
+            console.log("PROBLEM WITH LOGIN");
             return res.json({
                 "status": 400,
                 "data": {
@@ -85,23 +87,7 @@ router.post('/login', (req, res, next)=>{
 })
 
 
-router.post('/google',
-    passport.authenticate('google-token'), (req, res, next)=>{
-        req.auth = {
-            id: req.user.id
-        }
-        next();
-    }, generateToken, sendToken
-)
-
-
-router.get('/forgot-password', (req, res)=>{
-    res.render("forgot_password.ejs");
-})
-
-router.get('/forgot-password-sent', (req, res)=>{
-    res.render("forgot_password_sent.ejs");
-})
+router.post('/google', passport.authenticate('google-token'))
 
 router.post('/forgot-password', async (req, res, next)=>{
     try{

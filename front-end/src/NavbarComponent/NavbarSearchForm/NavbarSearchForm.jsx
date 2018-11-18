@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import { Button, Form, FormGroup, Input } from 'reactstrap';
 
@@ -17,3 +16,6 @@ export default class NavbarSearchForm extends Component {
         );
     }
 }
+
+//TODO: When the search bar is clicked, a dropdown lets you choose:
+// Roaster, Roast, or Users. eg. linkedIn's search bar.
