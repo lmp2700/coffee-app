@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, FormGroup, Input, Label, Button, Row, Col} from 'reactstrap';
 import { connect } from 'react-redux';
 import { createCoffee } from '../../redux/actions/coffeeActions';
+import { loadRoasters } from '../../redux/actions/roasterActions';
 class NewCoffee extends Component{
     constructor(){
         super();
@@ -13,6 +14,9 @@ class NewCoffee extends Component{
                 "origin": null
             }
         }
+    }
+    componentDidMount(){
+        this.props.loadRoasters();
     }
     handleChange = (e) => {
         this.setState({
@@ -41,6 +45,7 @@ class NewCoffee extends Component{
                             </Col>
                             <Col sm={6}>
                                 <FormGroup>
+                                    {/* TODO: Make this a typable box that shows results beneath */}
                                     <Label>Roaster:</Label>
                                     <Input type="select" name="roasterId" onChange={this.handleChange}>
                                         <option value="none">Unknown</option>
@@ -74,7 +79,8 @@ class NewCoffee extends Component{
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return{
-        createCoffee: (formData) => { createCoffee(dispatch, formData, ownProps.history)}
+        createCoffee: (formData) => { createCoffee(dispatch, formData, ownProps.history)},
+        loadRoasters: () => { loadRoasters() }
     }
 }
 const mapStateToProps = (state) => {
