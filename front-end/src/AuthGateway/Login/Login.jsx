@@ -17,14 +17,7 @@ class Login extends Component {
     }
     submitLogin = async (e) => {
         e.preventDefault();
-        const success = await this.props.login(this.state.form);
-        if(success){
-            this.props.history.push("/");
-        }else{
-            this.setState({
-                error: true
-            })
-        }
+        this.props.login(this.state.form);
     }
     handleChange = (e) => {
         this.setState({
@@ -36,8 +29,8 @@ class Login extends Component {
     }
     render(){
         return(
-            <Row>
-                <Form onSubmit={this.submitLogin} inline>
+            <Row className="justify-content-center">
+                <Form onSubmit={this.submitLogin}>
                     <FormGroup>
                     <Label for="username">Username</Label>
                     <Input type="text" name="username" id="loginUsername" onChange={this.handleChange} />
@@ -52,14 +45,14 @@ class Login extends Component {
         )
     }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return{
-        login: (formData) => { return login(dispatch, formData) }
+        login: (formData) => { return login(dispatch, formData, ownProps.history) }
     }
 }
 const mapStateToProps = (state) => {
     return{
-
+        loginError: state.auth.loginError
     }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

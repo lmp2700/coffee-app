@@ -10,10 +10,7 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'LOGOUT':
-            return {
-                ...state,
-                loggedIn: false
-            };
+            return initialState;
         case 'REGISTER':
             console.log(action.payload);
             return {
@@ -26,6 +23,7 @@ const authReducer = (state = initialState, action) => {
             return{
                 ...state,
                 loggedIn: true,
+                loginError: null,
                 currentUser: action.payload
             }
         default:

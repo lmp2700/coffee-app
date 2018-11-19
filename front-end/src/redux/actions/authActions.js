@@ -1,6 +1,6 @@
 import { LOGOUT, REGISTER } from './actionTypes';
 
-export const register = async (dispatch, formData) => {
+export const register = async (dispatch, formData, history) => {
     console.log(formData);
     console.log("REGISTERING FROM ACTIONS");
     const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/register`, {
@@ -18,13 +18,14 @@ export const register = async (dispatch, formData) => {
             type: REGISTER,
             payload: parsedResponse.data.user
         })
+        history.push("/");
     }else{
         console.log("THE SERVER DOESNT LIKE IT")
     }
 
 }
 
-export const login = async (dispatch, formData) => {
+export const login = async (dispatch, formData, history) => {
     console.log(formData);
     const validLogin = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/login`, {
         method: "POST",
@@ -41,7 +42,7 @@ export const login = async (dispatch, formData) => {
             type: "LOGIN",
             payload: parsedResponse.data.user
         })
-        return true;
+        history.push("/")
     } else {
         return false;
     }
@@ -49,12 +50,14 @@ export const login = async (dispatch, formData) => {
 export const googleLogin = async(dispatch, data) => {
     console.log("GOOGLE LOGIN COMING IN")
 }
-export const logOut = async (dispatch) => {
-    await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/logout`, {
+export const logout = async (dispatch, history) => {
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/logout`, {
       method: "POST",
       credentials: "include"
     })
+    console.log(response);
     dispatch({
         type: LOGOUT
     })
+    history.push("/")
 }

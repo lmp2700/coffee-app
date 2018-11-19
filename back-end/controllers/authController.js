@@ -79,7 +79,11 @@ router.post('/login', (req, res, next)=>{
                 "status": 200,
                 "data": {
                     valid: true,
-                    user: req.user
+                    user: {
+                        username: req.user.username,
+                        email: req.user.email,
+                        _id: req.user._id
+                    }
                 }
             })
         })

@@ -23,8 +23,6 @@ class AuthGateway extends Component{
     }
     render(){
         return(
-            <div>
-                <NavbarComponent/>
                 <Row>
                     <Col sm={8} className="offset-sm-2">
                         <Nav tabs>
@@ -56,7 +54,6 @@ class AuthGateway extends Component{
                     </TabContent>
                     </Col>
                 </Row>
-            </div>
         )
     }
 }

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand,
     Nav, NavItem, NavLink, UncontrolledDropdown,
     DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { logout } from '../redux/actions/authActions';
 import './style.css';
 import NavbarSearchForm from './NavbarSearchForm/NavbarSearchForm';
 
@@ -44,16 +45,21 @@ class NavbarComponent extends Component{
                       </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
-                  <NavItem>
-                    <NavLink>Recommendations</NavLink>
-                  </NavItem>
                   { this.props.auth.loggedIn ? 
                       <NavItem>
-                      <NavLink>My Profile</NavLink>
-                    </NavItem> :
+                      <NavLink tag={Link} to="/me">My Profile</NavLink>
+                    </NavItem>
+                     :
                     <NavItem>
                       <NavLink tag={Link} to="/login">Log in</NavLink>
                     </NavItem>
+                  }
+                  { this.props.auth.loggedIn ? 
+                    <NavItem>
+                      <NavLink onClick={this.props.logout}>Logout</NavLink>
+                    </NavItem>
+                    :
+                    null
                   }
                 </Nav>
               </Collapse>
@@ -66,4 +72,9 @@ const mapStateToProps = (state) => {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps)(NavbarComponent);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return{
+    logout: () => { logout(dispatch, ownProps.history) }
+  }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavbarComponent));

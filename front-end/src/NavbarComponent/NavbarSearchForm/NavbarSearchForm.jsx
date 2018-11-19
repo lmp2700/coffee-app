@@ -11,7 +11,7 @@ export default class NavbarSearchForm extends Component {
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
             <Input type="text" name="search-term" placeholder="Search roasters, roasts, people..." />
             </FormGroup>
-            <Button>Submit</Button>
+            <Button className="btn-success">Search</Button>
         </Form>
         );
     }

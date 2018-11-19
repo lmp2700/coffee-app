@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input  } from 'reactstrap';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { register } from '../../redux/actions/authActions';
 
 class Register extends Component {
@@ -101,9 +102,9 @@ class Register extends Component {
         )
     }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return{
-        register: (formData) => { register(dispatch, formData) }
+        register: (formData) => { register(dispatch, formData, ownProps.history) }
     }
 }
 const mapStateToProps = (state) => {
@@ -111,4 +112,4 @@ const mapStateToProps = (state) => {
 
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register));

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
-export default class Dashboard extends Component{
+class Profile extends Component {
     render(){
         return(
             <div>
-                <h2>This is the dashboard</h2>
+                <h1>here you are</h1>
             </div>
         )
     }
 }
+
+export default Profile;

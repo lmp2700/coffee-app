@@ -6,3 +6,6 @@
 .navbar-nav .nav-link {
     color: white;
 }
+.nav-item {
+    cursor: pointer;
+}
