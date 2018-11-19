@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require('../models/user');
+const User = require('../models/User');
 const passport = require('passport');
 // const nodemailer = require('nodemailer');
 const csrf = require('csurf');
@@ -49,7 +49,11 @@ router.post('/register', (req, res, next)=>{
                 return res.json({
                     "status": 200,
                     "data": {
-                        user: req.user
+                        user: {
+                            username: req.user.username,
+                            email: req.user.email,
+                            _id: req.user._id
+                        }
                     }
                 })
             })
@@ -62,8 +66,6 @@ router.post('/login', (req, res, next)=>{
             return next(err);
         }
         if(!user){ //user is set to false on auth failures
-            console.log(info);
-            console.log("PROBLEM WITH LOGIN");
             return res.json({
                 "status": 400,
                 "data": {
@@ -113,7 +115,7 @@ router.post('/forgot-password', async (req, res, next)=>{
             subject: 'Reset your password',
             text: 'Plaintext version of the message',
             html: '<p>Hey buddy, here\'s a link to reset your password</p>'+
-                  `<a href="http://localhost:3000/auth/reset-password/${user._id}/${token}">Reset password</a>`
+                  `<a href="${process.env.REACT_ADDRESS}/auth/reset-password/${user._id}/${token}">Reset password</a>`
         };
         transporter.sendMail(message)
         console.log('sent email!')

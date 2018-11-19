@@ -46,7 +46,7 @@ class NavbarComponent extends Component{
                     </DropdownMenu>
                   </UncontrolledDropdown>
                   { this.props.auth.loggedIn ? 
-                      <NavItem>
+                    <NavItem>
                       <NavLink tag={Link} to="/me">My Profile</NavLink>
                     </NavItem>
                      :
