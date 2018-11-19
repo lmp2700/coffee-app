@@ -23,4 +23,22 @@ router.post('/', async (req, res, next) => {
     }
 })
 
+router.put('/:id', async (req, res, next) => {
+    try{
+        const thisFriendRequest = await FriendRequest.findById(req.params.id);
+        if(this.FriendRequest.requested !== req.user._id){
+            throw new Error("Unauthorized attempt to modify friend request");
+        }
+        if(req.body.accepted){
+            thisFriendRequest.accepted = true;
+            await thisFriendRequest.save();
+        }else if(req.body.declined){
+            this.FriendRequest.declined = true;
+            await thisFriendRequest.save();
+        }
+    }catch(err){
+        next(err);
+    }
+})
+
 module.exports = router;

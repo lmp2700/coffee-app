@@ -20,11 +20,19 @@ export const register = async (dispatch, formData, history) => {
         })
         history.push("/");
     }else{
+        let message = ""
+        if(parsedResponse.data.errmsg.includes("username")){
+            message = "That username is taken. Try another!"
+        }else if(parsedResponse.data.errmsg.includes("email")){
+            message = "That email is already registered."
+        }else{
+            //SENDING RAW ERROR IS BAD, LETS DO BETTER
+            message = parsedResponse.data.errmsg;
+        }
         dispatch({
             type: REGISTER_FAILURE,
-            payload: parsedResponse.data
+            payload: message
         })
-        console.log("THE SERVER DOESNT LIKE IT")
     }
 
 }

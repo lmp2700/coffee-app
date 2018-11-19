@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
 const mongoUri = process.env.MONGODB_URI || "mongodb://localhost/coffee-app"
-mongoose.connect(mongoUri);
+mongoose.connect(mongoUri, { useNewUrlParser: true });
 
 mongoose.connection.on('connected', ()=>{
     console.log("MONGOOSE ACTIVE")

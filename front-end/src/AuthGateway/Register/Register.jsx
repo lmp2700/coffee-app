@@ -75,7 +75,7 @@ class Register extends Component {
     render(){
         return(
             <Form onSubmit={this.submitRegister}>
-                 {JSON.stringify(this.props.registerError)}
+                 { this.props.registerError ? <p className="error-message">{this.props.registerError}</p> : null}
                 <FormGroup>
                 <Label for="username">Username</Label>
                 {this.state.errors.username ? <p className="error-message">{this.state.errors.username}</p> : null}

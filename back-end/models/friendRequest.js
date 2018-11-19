@@ -14,6 +14,10 @@ const FriendRequestSchema = new Schema({
     accepted: {
         type: Boolean,
         default: false
+    },
+    declined: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true
