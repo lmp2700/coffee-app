@@ -21,14 +21,11 @@ class Register extends Component {
         e.preventDefault();
         let [valid, errors] = this.hasValidRegistration();
         if(valid){
-            console.log("GOOD TO GO");
             this.setState({
                 errors: {}
             })
             this.props.register(this.state.form);
         }else{
-            console.log("PROBLEMS");
-            console.log(errors);
             this.setState({
                 errors
             })
@@ -78,6 +75,7 @@ class Register extends Component {
     render(){
         return(
             <Form onSubmit={this.submitRegister}>
+                 {JSON.stringify(this.props.registerError)}
                 <FormGroup>
                 <Label for="username">Username</Label>
                 {this.state.errors.username ? <p className="error-message">{this.state.errors.username}</p> : null}
@@ -107,7 +105,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 const mapStateToProps = (state) => {
     return{
-
+        registerError: state.auth.registerError
     }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register));

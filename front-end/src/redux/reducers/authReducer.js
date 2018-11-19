@@ -1,9 +1,11 @@
 const initialState = {
     loggedIn: false,
+    registerError: null,
     currentUser: {
         displayName: '',
         username: '',
         _id: '',
+        friends: [],
     }
 };
 
@@ -12,14 +14,17 @@ const authReducer = (state = initialState, action) => {
         case 'LOGOUT':
             return initialState;
         case 'REGISTER':
-            console.log(action.payload);
             return {
                 ...state,
                 loggedIn: true,
                 currentUser: action.payload
             }
+        case 'REGISTER_FAILURE':
+            return {
+                ...state,
+                registerError: action.payload
+            }
         case 'LOGIN':
-            console.log(action.payload);
             return{
                 ...state,
                 loggedIn: true,

@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const User = require('../models/user');
+const User = require('../models/User');
 const requireLogin = require('../middleware/requireLogin');
-const FriendRequest = require('../models/friendRequest');
+const FriendRequest = require('../models/FriendRequest');
 
 router.get('/', async (req, res)=>{
     query = req.query.query || "";

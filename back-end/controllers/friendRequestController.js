@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const FriendRequest = require('../models/FriendRequest');
 
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try{
         const friendRequestsForYou = await FriendRequest.find({requested: req.user._id});
         const friendRequestsYouMade = await FriendRequest.find({requester: req.user._id});
@@ -10,7 +10,7 @@ router.get('/', (req, res, next) => {
     }
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
     try{
         console.log(req.body);
         const newRequest = {

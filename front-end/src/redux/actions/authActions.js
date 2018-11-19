@@ -1,4 +1,4 @@
-import { LOGOUT, REGISTER } from './actionTypes';
+import { LOGOUT, REGISTER, REGISTER_FAILURE } from './actionTypes';
 
 export const register = async (dispatch, formData, history) => {
     console.log(formData);
@@ -20,13 +20,16 @@ export const register = async (dispatch, formData, history) => {
         })
         history.push("/");
     }else{
+        dispatch({
+            type: REGISTER_FAILURE,
+            payload: parsedResponse.data
+        })
         console.log("THE SERVER DOESNT LIKE IT")
     }
 
 }
 
 export const login = async (dispatch, formData, history) => {
-    console.log(formData);
     const validLogin = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/login`, {
         method: "POST",
         credentials: "include",
@@ -36,7 +39,6 @@ export const login = async (dispatch, formData, history) => {
         }
     })
     const parsedResponse = await validLogin.json()
-    console.log(parsedResponse);
     if(parsedResponse.status === 200){
         dispatch({
             type: "LOGIN",
