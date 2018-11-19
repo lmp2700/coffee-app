@@ -14,14 +14,14 @@ class NavbarComponent extends Component{
         this.state = {
           isOpen: false
         };
-      }
+    }
       toggle = () => {
         this.setState({
           isOpen: !this.state.isOpen
         });
       }
       render() {
-        return (
+        return this.props.auth.loggedIn ? 
             <Navbar dark expand="md">
               <NavbarBrand tag={Link} to="/">Bean Scout</NavbarBrand>
               <NavbarToggler onClick={this.toggle} />
@@ -43,28 +43,48 @@ class NavbarComponent extends Component{
                       <DropdownItem tag={Link} to="/coffee/reviews/new">
                         Add a review
                       </DropdownItem>
+                      <DropdownItem tag={Link} to="/coffee/new">
+                        Add a new roast
+                      </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>
-                  { this.props.auth.loggedIn ? 
                     <NavItem>
                       <NavLink tag={Link} to="/me">My Profile</NavLink>
                     </NavItem>
-                     :
-                    <NavItem>
-                      <NavLink tag={Link} to="/login">Log in</NavLink>
-                    </NavItem>
-                  }
-                  { this.props.auth.loggedIn ? 
                     <NavItem>
                       <NavLink onClick={this.props.logout}>Logout</NavLink>
                     </NavItem>
-                    :
-                    null
-                  }
                 </Nav>
               </Collapse>
             </Navbar>
-        );
+          :
+          //NAVBAR FOR STRANGERS
+          <Navbar dark expand="md">
+          <NavbarBrand tag={Link} to="/">Bean Scout</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav navbar>
+              <NavItem>
+                <NavbarSearchForm/>
+              </NavItem>
+            </Nav>
+            <Nav navbar className="ml-auto">
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Coffee
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem tag={Link} to="/coffee">
+                    Browse Coffees
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+                <NavItem>
+                  <NavLink tag={Link} to="/login">Login</NavLink>
+                </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
       }
 }
 const mapStateToProps = (state) => {

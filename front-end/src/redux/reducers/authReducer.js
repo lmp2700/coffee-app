@@ -17,6 +17,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedIn: true,
+                registerError: null,
                 currentUser: action.payload
             }
         case 'REGISTER_FAILURE':
@@ -30,6 +31,10 @@ const authReducer = (state = initialState, action) => {
                 loggedIn: true,
                 loginError: null,
                 currentUser: action.payload
+            }
+        case 'LOGIN_FAILURE':
+            return{
+                ...initialState
             }
         default:
             return state;

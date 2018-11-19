@@ -1,8 +1,6 @@
-import { LOGOUT, REGISTER, REGISTER_FAILURE } from './actionTypes';
+import { LOGOUT, REGISTER, REGISTER_FAILURE, LOGIN, LOGIN_FAILURE } from './actionTypes';
 
 export const register = async (dispatch, formData, history) => {
-    console.log(formData);
-    console.log("REGISTERING FROM ACTIONS");
     const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/register`, {
         method: "POST",
         credentials: "include",
@@ -12,7 +10,6 @@ export const register = async (dispatch, formData, history) => {
         }
     })
     const parsedResponse = await response.json();
-    console.log(parsedResponse);
     if(parsedResponse.status === 200){
         dispatch({
             type: REGISTER,
@@ -49,25 +46,26 @@ export const login = async (dispatch, formData, history) => {
     const parsedResponse = await validLogin.json()
     if(parsedResponse.status === 200){
         dispatch({
-            type: "LOGIN",
+            type: LOGIN,
             payload: parsedResponse.data.user
         })
         history.push("/")
     } else {
-        return false;
+        dispatch({
+            type: LOGIN_FAILURE
+        })
     }
 }
 export const googleLogin = async(dispatch, data) => {
     console.log("GOOGLE LOGIN COMING IN")
 }
 export const logout = async (dispatch, history) => {
-    const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/logout`, {
+    await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/logout`, {
       method: "POST",
       credentials: "include"
     })
-    console.log(response);
     dispatch({
         type: LOGOUT
     })
-    history.push("/")
+    history.push("/login")
 }
