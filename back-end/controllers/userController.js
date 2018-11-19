@@ -16,30 +16,6 @@ router.get('/', async (req, res)=>{
     }catch(err){
         next(err);
     }
-
-
-})
-router.post('/:id/request-friend', async(req, res, next)=>{
-    try{
-        const newFriendRequest = await FriendRequest.findOrCreate({
-            requester: req.user._id,
-            requested: req.params.id
-        })
-        if(newFriendRequest.created){
-            const newRequest = await FriendRequest.findById(newFriendRequest.doc._id).populate({"path":"requester","select":"-password"}).populate({"path":"requested","select":"-password"})
-            res.json({
-                status:200,
-                data: newRequest
-            })
-        }else{
-            res.json({
-                status: 400 //bad request, duplicates
-            })
-        }
-
-    } catch(err){
-        next(err);
-    }
 })
 router.post('/:id/add-friend', async (req, res, next)=>{
     try {

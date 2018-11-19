@@ -12,14 +12,24 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try{
-        console.log(req.body);
-        const newRequest = {
+        const newFriendRequest = await FriendRequest.findOrCreate({
             requester: req.user._id,
-            requested: req.body.potentialFriendId
+            requested: req.body.requestedFriendId
+        })
+        if(newFriendRequest.created){
+            const newRequest = await FriendRequest.findById(newFriendRequest.doc._id).populate({"path":"requester","select":"-password"}).populate({"path":"requested","select":"-password"})
+            res.json({
+                status:200,
+                data: newRequest
+            })
+        }else{
+            res.json({
+                status: 400 //bad request, duplicates
+            })
         }
-        console.log(newRequest);
-    }catch(err){
-        next(err)
+
+    } catch(err){
+        next(err);
     }
 })
 
