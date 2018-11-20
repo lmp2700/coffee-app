@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import NewCoffeeReview from './NewCoffeeReview/NewCoffeeReview';
 import CoffeeIndex from './CoffeeIndex/CoffeeIndex';
 import NewCoffee from './NewCoffee/NewCoffee';
+import ShowCoffee from './ShowCoffee/ShowCoffee';
 
 
 export default class MyCoffee extends Component{
@@ -13,6 +14,7 @@ export default class MyCoffee extends Component{
                     <Route exact path="/coffee" component={CoffeeIndex} />
                     <Route exact path="/coffee/new" component={NewCoffee} />
                     <Route path="/coffee/reviews/new" component={NewCoffeeReview} />
+                    <Route exact path="/coffee/:id" component={ShowCoffee} />
                 </Switch>
             </div>
         )

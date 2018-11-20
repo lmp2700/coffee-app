@@ -55,10 +55,12 @@ const authController = require('./controllers/authController');
 const userController = require('./controllers/userController');
 const friendRequestController = require('./controllers/friendRequestController');
 const roasterController = require('./controllers/roasterController');
+const roastController = require('./controllers/roastController');
 
 app.use('/api/v1/auth', authController);
 app.use('/api/v1/users', userController)
 app.use('/api/v1/roasters', roasterController);
+app.use('/api/v1/coffee', roastController);
 app.use('/api/v1/friendRequests', requireLogin, friendRequestController);
 
 //ERROR HANDLING

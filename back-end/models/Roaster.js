@@ -6,6 +6,13 @@ const RoasterSchema = new Schema({
     name: {
         type: String,
         required: true
+    },
+    address: {
+        type: String
+    },
+    googleId: {
+        type: String,
+        unique: true
     }
 }, {
     timestamps: true

@@ -31,6 +31,9 @@ class NewCoffee extends Component{
         this.props.createCoffee(this.state.form)
     }
     render(){
+        const roasterOptions = this.props.allRoasters.map((roaster)=>{
+            return <option value={roaster._id} key={roaster._id}>{roaster.name}</option>
+        })
         return(
             <Row>
                 <Col sm={8} className="offset-sm-2">
@@ -47,10 +50,9 @@ class NewCoffee extends Component{
                                 <FormGroup>
                                     {/* TODO: Make this a typable box that shows results beneath */}
                                     <Label>Roaster:</Label>
-                                    <Input type="select" name="roasterId" onChange={this.handleChange}>
-                                        <option value="none">Unknown</option>
-                                        <option value="1">Roaster1</option>
-                                        <option value="2">Roaster2</option>
+                                    <Input type="select" name="roaster" onChange={this.handleChange}>
+                                        <option value="none"></option>
+                                        {roasterOptions}
                                     </Input>
                                 </FormGroup>
                             </Col>
@@ -80,12 +82,12 @@ class NewCoffee extends Component{
 const mapDispatchToProps = (dispatch, ownProps) => {
     return{
         createCoffee: (formData) => { createCoffee(dispatch, formData, ownProps.history)},
-        loadRoasters: () => { loadRoasters() }
+        loadRoasters: () => { loadRoasters(dispatch) }
     }
 }
 const mapStateToProps = (state) => {
     return{
-        roasters: state.allRoasters
+        allRoasters: state.roasters.allRoasters
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewCoffee)

@@ -6,7 +6,11 @@ const Roaster = require('../models/Roaster');
 
 router.get('/', async(req, res, next)=>{
     try{
-        
+        const roasters = await Roaster.find();
+        res.json({
+            status: 200,
+            data: roasters
+        })
     }catch(err){
         next(err);
     }
@@ -14,15 +18,15 @@ router.get('/', async(req, res, next)=>{
 
 router.get('/search', async(req, res, next) => {
     try{
+        if(!req.query.location){
+            console.log("LOCATOINLESS SEARCH");
+        }
         googleMapsClient.geocode({
             address: req.query.location
         }, (err, response)=>{
             if(err){
                 next(err)
             }else{
-                console.log(response.json)
-                console.log("-----------")
-                console.log(response.json.results[0].geometry.location);
                 googleMapsClient.places({
                     query: req.query.query + "coffee roaster",
                     location: response.json.results[0].geometry.location
@@ -31,13 +35,20 @@ router.get('/search', async(req, res, next) => {
                         next(err);
                     }else{
                         const creationPromises = response.json.results.map((result)=>{
+                            console.log(result);
                             const thisRoaster = {
-                                name: result.name
+                                name: result.name,
+                                address: result.formatted_address,
+                                googleId: result.id
                             }
                             return Roaster.findOrCreate(thisRoaster);
                         })
                         Promise.all(creationPromises).then((roasters)=>{
                             console.log(roasters)
+                            res.json({
+                                status: 200,
+                                data: roasters
+                            })
                         })
                     }
                 })

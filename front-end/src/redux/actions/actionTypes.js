@@ -3,3 +3,8 @@ export const REGISTER = "REGISTER";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const LOGIN = "LOGIN";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
+
+export const SEARCH_ROASTERS = "SEARCH_ROASTERS";
+export const LOAD_ROASTERS = "LOAD_ROASTERS";
+
+export const CREATE_COFFEE = "CREATE_COFFEE";
