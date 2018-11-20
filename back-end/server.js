@@ -54,13 +54,16 @@ require('./passport/google-config');
 const authController = require('./controllers/authController');
 const userController = require('./controllers/userController');
 const friendRequestController = require('./controllers/friendRequestController');
+const roasterController = require('./controllers/roasterController');
 
 app.use('/api/v1/auth', authController);
 app.use('/api/v1/users', userController)
+app.use('/api/v1/roasters', roasterController);
 app.use('/api/v1/friendRequests', requireLogin, friendRequestController);
 
 //ERROR HANDLING
 app.use(function (err, req, res, next) {
+    console.log(err);
     if (err.code == 'EBADCSRFTOKEN') {
     // handle CSRF token errors here
         console.log(req.body);

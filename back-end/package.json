@@ -4,6 +4,7 @@
   "description": "coffee app server",
   "main": "server.js",
   "dependencies": {
+    "@google/maps": "^0.5.5",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-mongodb-session": "^2.0.4",

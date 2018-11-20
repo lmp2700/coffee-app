@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const findOrCreate = require('mongoose-findorcreate');
 const {Schema} = mongoose;
 
 const RoasterSchema = new Schema({
@@ -9,4 +10,5 @@ const RoasterSchema = new Schema({
 }, {
     timestamps: true
 })
+RoasterSchema.plugin(findOrCreate, {upsert: true});
 module.exports = mongoose.model("Roaster", RoasterSchema);

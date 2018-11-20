@@ -1,7 +1,7 @@
 import { LOGOUT, REGISTER, REGISTER_FAILURE, LOGIN, LOGIN_FAILURE } from './actionTypes';
 
 export const register = async (dispatch, formData, history) => {
-    const response = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/register`, {
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/auth/register`, {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(formData),
@@ -35,7 +35,7 @@ export const register = async (dispatch, formData, history) => {
 }
 
 export const login = async (dispatch, formData, history) => {
-    const validLogin = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/login`, {
+    const validLogin = await fetch(`${process.env.REACT_APP_API_HOST}/auth/login`, {
         method: "POST",
         credentials: "include",
         body: JSON.stringify(formData),
@@ -60,7 +60,7 @@ export const googleLogin = async(dispatch, data) => {
     console.log("GOOGLE LOGIN COMING IN")
 }
 export const logout = async (dispatch, history) => {
-    await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/auth/logout`, {
+    await fetch(`${process.env.REACT_APP_API_HOST}/auth/logout`, {
       method: "POST",
       credentials: "include"
     })
