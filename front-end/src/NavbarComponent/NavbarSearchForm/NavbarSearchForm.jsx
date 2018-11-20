@@ -36,9 +36,9 @@ const mapStateToProps = (state) => {
         currentUser: state.auth.currentUser
     }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return{
-        searchRoasters: (formData) => { searchRoasters(dispatch, formData)}
+        searchRoasters: (formData) => { searchRoasters(dispatch, formData, ownProps.history)}
     }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Input, Label, Button, Row, Col} from 'reactstrap';
 import { connect } from 'react-redux';
-import { createCoffee } from '../../redux/actions/coffeeActions';
+import { createRoast } from '../../redux/actions/roastActions';
 import { loadRoasters } from '../../redux/actions/roasterActions';
 class NewCoffee extends Component{
     constructor(){
@@ -81,7 +81,7 @@ class NewCoffee extends Component{
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return{
-        createCoffee: (formData) => { createCoffee(dispatch, formData, ownProps.history)},
+        createRoast: (formData) => { createRoast(dispatch, formData, ownProps.history)},
         loadRoasters: () => { loadRoasters(dispatch) }
     }
 }

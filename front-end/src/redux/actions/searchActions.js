@@ -1,6 +1,6 @@
 import { SEARCH_ROASTERS } from './actionTypes';
 
-export const searchRoasters = async(dispatch, formData) => {
+export const searchRoasters = async(dispatch, formData, history) => {
     console.log(formData);
     const response = await fetch(`${process.env.REACT_APP_API_HOST}/roasters/search?location=denver&query=${formData.query}`, {
         credentials: 'include',
