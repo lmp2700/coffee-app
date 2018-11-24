@@ -70,7 +70,9 @@ router.get('/search', async(req, res, next) => {
             })
         }else{
             const roasters = await Roaster.find({
-                name: new RegExp(req.query.query, 'i')
+                $or: [{keywords: new RegExp(req.query.query, 'i')},
+                    {name: new RegExp(req.query.query, 'i')}
+                ]
             })
             console.log("FINDING CACHED ROASTERS");
             console.log(roasters);

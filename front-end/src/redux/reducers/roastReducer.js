@@ -6,7 +6,8 @@ const initialState = {
         "roaster": {
             "name": null,
             "_id": null
-        }
+        },
+        "reviews": []
     }
 }
 
@@ -16,6 +17,18 @@ const roastReducer = (state=initialState, action) => {
             return{
                 ...state,
                 currentRoast: action.payload
+            }
+        case "CREATE_ROAST":
+            return{
+                ...state
+            }
+        case "CREATE_ROAST_REVIEW":
+            return{
+                ...state,
+                currentRoast: {
+                    ...state.currentRoast,
+                    reviews: [...state.currentRoast.reviews, action.payload]
+                }
             }
         default:
             return state;

@@ -10,10 +10,18 @@ class ShowRoast extends Component{
         this.props.loadRoast();
     }
     render(){
+        const reviews = this.props.roast.reviews.map((review)=>{
+            return(
+                <div key={review._id}>
+                    <h4>{review.title} {review.rating}/5</h4>
+                    <h6>{review.reviewer.username}</h6>
+                </div>
+            )
+        })
         return(
             <div>
                 <Row className="roast-detail">
-                    <Col sm={6} className="offset-sm-3">
+                    <Col sm={8}>
                         <h2>{this.props.roast.name}</h2>
                         <h5>Roasted by: <Link to={`/roasters/${this.props.roast.roaster._id}`}>{this.props.roast.roaster.name}</Link></h5>
                         <p>Origin: {this.props.roast.origin}</p>
@@ -28,7 +36,10 @@ class ShowRoast extends Component{
                         
                         </Row>
                         <Progress value={this.props.roast.color} />
-                        <RoastReviewFormModal />
+                        <RoastReviewFormModal roast={this.props.roast}/>
+                    </Col>
+                    <Col sm={4}>
+                        {reviews}
                     </Col>
                 </Row>
             </div>

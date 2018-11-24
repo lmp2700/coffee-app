@@ -6,15 +6,15 @@ import NewCoffee from './NewCoffee/NewCoffee';
 import ShowRoast from './ShowRoast/ShowRoast';
 
 
-export default class MyCoffee extends Component{
+export default class Roasts extends Component{
     render(){
         return(
             <div>
                 <Switch>
-                    <Route exact path="/coffee" component={CoffeeIndex} />
-                    <Route exact path="/coffee/new" component={NewCoffee} />
-                    <Route path="/coffee/reviews/new" component={NewCoffeeReview} />
-                    <Route exact path="/coffee/:id" component={ShowRoast} />
+                    <Route exact path="/roasts" component={CoffeeIndex} />
+                    <Route exact path="/roasts/new" component={NewCoffee} />
+                    <Route path="/roasts/reviews/new" component={NewCoffeeReview} />
+                    <Route exact path="/roasts/:id" component={ShowRoast} />
                 </Switch>
             </div>
         )

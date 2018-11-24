@@ -69,3 +69,16 @@ export const logout = async (dispatch, history) => {
     })
     history.push("/login")
 }
+
+export const checkForUser = async (dispatch) => {
+    const userCheck = await fetch(`${process.env.REACT_APP_API_HOST}/auth/is-logged-in`, {
+        credentials: 'include'
+    })
+    const parsedUserCheck = await userCheck.json();
+    if(parsedUserCheck.data.loggedIn){
+        dispatch({
+            type: "SET_USER",
+            payload: parsedUserCheck.data.user
+        })
+    }
+}

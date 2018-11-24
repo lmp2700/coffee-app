@@ -1,0 +1,6 @@
+.roast-in-list h6, .roast-in-list a {
+    display: inline-block;
+}
+.roast-in-list a {
+    margin-left: 3em;
+}

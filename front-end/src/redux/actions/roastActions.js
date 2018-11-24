@@ -1,7 +1,6 @@
-import { CREATE_ROAST, LOAD_ROAST } from './actionTypes';
+import { CREATE_ROAST, LOAD_ROAST, CREATE_ROAST_REVIEW } from './actionTypes';
 
 export const createRoast = async(dispatch, formData, history) => {
-    console.log(formData);
     const newCoffee = await fetch(`${process.env.REACT_APP_API_HOST}/roasts`, {
         credentials: 'include',
         headers: {
@@ -11,7 +10,6 @@ export const createRoast = async(dispatch, formData, history) => {
         method: "POST"
     })
     const parsedNewCoffee = await newCoffee.json();
-    console.log(parsedNewCoffee);
     dispatch({
         type: CREATE_ROAST,
         payload: parsedNewCoffee.data
@@ -20,15 +18,30 @@ export const createRoast = async(dispatch, formData, history) => {
 }
 
 export const loadRoast = async(dispatch, roastId)=>{
-    console.log("ACTION LOADING A ROAST");
-    console.log(roastId);
     const thisRoast = await fetch(`${process.env.REACT_APP_API_HOST}/roasts/${roastId}`, {
         credentials: 'include'
     })
     const thisRoastParsed = await thisRoast.json();
-    console.log(thisRoastParsed);
     dispatch({
         type: LOAD_ROAST,
         payload: thisRoastParsed.data
+    })
+}
+
+export const createReview = async(dispatch, formData, history) => {
+    console.log("CREATING A REVIEW IN ACTIONS");
+    const newReview = await fetch(`${process.env.REACT_APP_API_HOST}/roasts/${formData.roastId}/reviews`, {
+        credentials: 'include',
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const newReviewParsed = await newReview.json();
+    console.log(newReviewParsed);
+    dispatch({
+        type: CREATE_ROAST_REVIEW,
+        payload: newReviewParsed.data
     })
 }

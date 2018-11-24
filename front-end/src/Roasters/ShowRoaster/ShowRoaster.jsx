@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { loadRoaster } from '../../redux/actions/roasterActions';
+import './style.css';
 
 class ShowRoaster extends Component{
     componentDidMount(){
@@ -9,14 +11,16 @@ class ShowRoaster extends Component{
     render(){
         const roasts = this.props.roaster.roasts.map((roast)=>{
             return(
-                <div key={roast._id}>
+                <div className="roast-in-list" key={roast._id}>
                     <h6>{roast.name}</h6>
+                    <Link to={`/roasts/${roast._id}`}>View</Link>
                 </div>
             )
         })
         return(
             <div>
                 <h1>{this.props.roaster.name}</h1>
+                <p>{this.props.roaster.address}</p>
                 <h3>Featured roasts</h3>
                 {roasts}
             </div>

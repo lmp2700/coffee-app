@@ -15,7 +15,14 @@ router.get('/', async(req, res, next)=>{
 
 router.get('/:id', async(req, res, next)=>{
     try{
-        const roast = await Roast.findById(req.params.id).populate('roaster');
+        const roast = await Roast.findById(req.params.id)
+        .populate('roaster')
+        .populate({
+            path: 'reviews',
+            populate: {
+                path: 'reviewer'
+            }
+        });
         res.json({
             status: 200, 
             data: roast
