@@ -17,6 +17,11 @@ const searchReducer = (state = initialState, action) => {
                 ...state,
                 roastResults: action.payload
             }
+        case 'SEARCH_ROASTERS':
+            return{
+                ...state,
+                roasterResults: action.payload
+            }
         default:
             return state;
     }

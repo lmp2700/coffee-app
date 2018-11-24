@@ -9,6 +9,20 @@ const RoastReviewSchema = new Schema({
     roast: {
         type: Schema.Types.ObjectId,
         ref: "Roast"
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    body: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        max: 5,
+        min: 1,
+        required: true
     }
 }, {
     timestamps: true

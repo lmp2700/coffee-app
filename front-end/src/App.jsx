@@ -8,6 +8,7 @@ import AuthGateway from './AuthGateway/AuthGateway';
 import Profile from './Profile/Profile';
 import NavbarComponent from './NavbarComponent/NavbarComponent';
 import Roasters from './Roasters/Roasters';
+import RoasterSearchResults from './SearchResults/RoasterSearchResults';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
                   <Route path="/me/" component={Profile} />
                   <Route path="/coffee/" component={MyCoffee} />
                   <Route path="/roasters/" component={Roasters} />
+                  <Route path="/search/roasters/results" component={RoasterSearchResults} />
                 </Switch>
       </Container>
     );

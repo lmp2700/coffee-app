@@ -13,7 +13,8 @@ const RoasterSchema = new Schema({
     googleId: {
         type: String,
         unique: true
-    }
+    },
+    keywords: [{type:String}]
 }, {
     timestamps: true
 })

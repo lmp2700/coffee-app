@@ -28,7 +28,7 @@ class NewCoffee extends Component{
     }
     createCoffee = async(e)=>{
         e.preventDefault();
-        this.props.createCoffee(this.state.form)
+        this.props.createRoast(this.state.form)
     }
     render(){
         const roasterOptions = this.props.allRoasters.map((roaster)=>{
