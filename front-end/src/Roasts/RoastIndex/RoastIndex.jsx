@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row } from 'reactstrap';
-class CoffeeIndex extends Component{
+class RoastIndex extends Component{
    render(){
        return(
            <Row>
@@ -10,4 +10,4 @@ class CoffeeIndex extends Component{
    }
 }
 
-export default CoffeeIndex;
+export default RoastIndex;

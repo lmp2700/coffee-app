@@ -3,7 +3,7 @@ import { Form, FormGroup, Input, Label, Button, Row, Col} from 'reactstrap';
 import { connect } from 'react-redux';
 import { createRoast } from '../../redux/actions/roastActions';
 import { loadRoasters } from '../../redux/actions/roasterActions';
-class NewCoffee extends Component{
+class NewRoast extends Component{
     constructor(){
         super();
         this.state = {
@@ -90,4 +90,4 @@ const mapStateToProps = (state) => {
         allRoasters: state.roasters.allRoasters
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(NewCoffee)
+export default connect(mapStateToProps, mapDispatchToProps)(NewRoast)
