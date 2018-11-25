@@ -1,4 +1,4 @@
-import { LOGOUT, REGISTER, REGISTER_FAILURE, LOGIN, LOGIN_FAILURE } from './actionTypes';
+import { LOGOUT, REGISTER, REGISTER_FAILURE, LOGIN, LOGIN_FAILURE, UPDATE_USER, SET_USER } from './actionTypes';
 
 export const register = async (dispatch, formData, history) => {
     const response = await fetch(`${process.env.REACT_APP_API_HOST}/auth/register`, {
@@ -15,7 +15,7 @@ export const register = async (dispatch, formData, history) => {
             type: REGISTER,
             payload: parsedResponse.data.user
         })
-        history.push("/");
+        history.push("/me");
     }else{
         let message = ""
         if(parsedResponse.data.errmsg.includes("username")){
@@ -31,7 +31,6 @@ export const register = async (dispatch, formData, history) => {
             payload: message
         })
     }
-
 }
 
 export const login = async (dispatch, formData, history) => {
@@ -77,8 +76,25 @@ export const checkForUser = async (dispatch) => {
     const parsedUserCheck = await userCheck.json();
     if(parsedUserCheck.data.loggedIn){
         dispatch({
-            type: "SET_USER",
+            type: SET_USER,
             payload: parsedUserCheck.data.user
         })
     }
+}
+
+export const updateUser = async (dispatch, formData, history) => {
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/users/${formData.userId}`, {
+        credentials: 'include',
+        method: "PUT",
+        body: JSON.stringify(formData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const responseParsed = await response.json();
+    console.log(responseParsed)
+    dispatch({
+        type: UPDATE_USER,
+        payload: responseParsed.data
+    })
 }

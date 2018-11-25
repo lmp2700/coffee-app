@@ -55,11 +55,18 @@ router.get('/friend-requests', async (req, res, next)=>{
     }
 })
 
-router.put('/:id', async(req, res, next)=>{
+router.put('/:id', requireLogin, async(req, res, next)=>{
     try{
-        const thisUser = await User.findById(req.params.id);
+        const thisUser = await User.findByIdAndUpdate(req.params.id, {
+            ...req.body,
+            profile: {
+                ...req.body,
+                set: true
+            }
+        }, {new: true});
         console.log(thisUser);
         console.log(req.body);
+
         res.json({
             status: 200,
             data: thisUser

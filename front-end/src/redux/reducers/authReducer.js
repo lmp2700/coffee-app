@@ -6,6 +6,7 @@ const initialState = {
         username: '',
         _id: '',
         friends: [],
+        profile: {}
     }
 };
 
@@ -40,6 +41,11 @@ const authReducer = (state = initialState, action) => {
             return{
                 ...state,
                 loggedIn: true,
+                currentUser: action.payload
+            }
+        case 'UPDATE_USER':
+            return{
+                ...state,
                 currentUser: action.payload
             }
         default:

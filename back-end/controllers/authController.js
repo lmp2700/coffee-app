@@ -37,7 +37,11 @@ router.post('/logout', (req, res)=>{
     })
 })
 router.post('/register', (req, res, next)=>{
-    User.create(req.body, (err, user)=>{
+    const newUser = {
+        ...req.body,
+        displayName: req.body.username
+    }
+    User.create(newUser, (err, user)=>{
         if(err){
             next(err)
         } else {
@@ -50,9 +54,8 @@ router.post('/register', (req, res, next)=>{
                     "status": 200,
                     "data": {
                         user: {
-                            username: req.user.username,
-                            email: req.user.email,
-                            _id: req.user._id
+                            ...user._doc,
+                            password: null
                         }
                     }
                 })
@@ -82,9 +85,8 @@ router.post('/login', (req, res, next)=>{
                 "data": {
                     valid: true,
                     user: {
-                        username: req.user.username,
-                        email: req.user.email,
-                        _id: req.user._id
+                        ...user._doc,
+                        password: null
                     }
                 }
             })

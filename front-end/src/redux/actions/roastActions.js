@@ -1,4 +1,4 @@
-import { CREATE_ROAST, LOAD_ROAST, CREATE_ROAST_REVIEW } from './actionTypes';
+import { CREATE_ROAST, LOAD_ROAST, CREATE_ROAST_REVIEW, LOAD_ROASTS } from './actionTypes';
 
 export const createRoast = async(dispatch, formData, history) => {
     const newCoffee = await fetch(`${process.env.REACT_APP_API_HOST}/roasts`, {
@@ -45,3 +45,17 @@ export const createReview = async(dispatch, formData, history) => {
         payload: newReviewParsed.data
     })
 }
+
+export const loadRoasts = async (dispatch) => {
+    console.log("LOADING ROASTS");
+    const roasts = await fetch(`${process.env.REACT_APP_API_HOST}/roasts`, {
+        credentials: 'include'
+    })
+    const roastsParsed = await roasts.json();
+    if(roastsParsed.status === 200){
+        dispatch({
+            type: LOAD_ROASTS,
+            payload: roastsParsed.data
+        })
+    }
+} 

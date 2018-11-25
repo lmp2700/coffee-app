@@ -3,6 +3,12 @@ const findOrCreate = require('mongoose-findorcreate');
 const bcrypt = require('bcryptjs');
 const { Schema } = mongoose;
 
+const ProfileSchema = new mongoose.Schema({
+    set: { type: Boolean, default: false},
+    location: { type: String },
+    roastColorPreference: { type: Number },
+    roastOriginPreferences: [{ type: String}]
+})
 const UserSchema = new mongoose.Schema({
     username: {type: String,
                 index: {
@@ -22,6 +28,7 @@ const UserSchema = new mongoose.Schema({
         },
         select: false
     },
+    profile: { type: ProfileSchema, default: () => ({}) },
     roasterAuthorizations: [{type: Schema.Types.ObjectId, ref: "Roaster"}],
     friends: [{type: Schema.Types.ObjectId, ref: "User"}]
 }, {

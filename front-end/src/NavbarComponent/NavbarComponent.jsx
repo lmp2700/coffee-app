@@ -37,13 +37,13 @@ class NavbarComponent extends Component{
                       Coffee
                     </DropdownToggle>
                     <DropdownMenu right>
-                      <DropdownItem tag={Link} to="/coffee">
-                        My Coffees
+                      <DropdownItem tag={Link} to="/roasts">
+                        Browse Roasts
                       </DropdownItem>
-                      <DropdownItem tag={Link} to="/coffee/reviews/new">
+                      <DropdownItem tag={Link} to="/roasts/reviews/new">
                         Add a review
                       </DropdownItem>
-                      <DropdownItem tag={Link} to="/coffee/new">
+                      <DropdownItem tag={Link} to="/roasts/new">
                         Add a new roast
                       </DropdownItem>
                     </DropdownMenu>
