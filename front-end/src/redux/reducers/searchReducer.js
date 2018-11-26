@@ -9,18 +9,24 @@ const searchReducer = (state = initialState, action) => {
     switch(action.type){
         case 'GENERAL_SEARCH':
             return{
-                ...state,
+                //each search should wipe out previous results
+                ...initialState,
                 generalResults: action.payload
             }
         case 'ROAST_SEARCH':
             return{
-                ...state,
+                ...initialState,
                 roastResults: action.payload
             }
         case 'SEARCH_ROASTERS':
             return{
-                ...state,
+                ...initialState,
                 roasterResults: action.payload
+            }
+        case 'SEARCH_USERS':
+            return{
+                ...initialState,
+                userResults: action.payload
             }
         default:
             return state;

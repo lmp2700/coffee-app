@@ -1,0 +1,9 @@
+.my-network {
+    margin-top: 3em;
+}
+.user-search-result button, .user-search-result h4 {
+    display: inline-block;
+}
+.user-search-result button {
+    margin-left: 1em;
+}

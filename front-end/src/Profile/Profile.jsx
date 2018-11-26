@@ -9,7 +9,7 @@ class Profile extends Component {
             <div>
                 <Row>
                     <Col sm={6} className="offset-sm-3">
-                    <h2>{this.props.currentUser.displayName} from {this.props.currentUser.profile.location}</h2>
+                    <h2>{this.props.currentUser.displayName}</h2>
                     { this.props.currentUser.profile.set ? 
                     <div> 
                         <h4>Roast color preference: {this.props.currentUser.profile.roastColorPreference}</h4>

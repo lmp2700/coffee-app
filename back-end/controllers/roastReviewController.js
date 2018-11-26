@@ -4,8 +4,6 @@ const Roast = require('../models/Roast');
 const requireLogin = require('../middleware/requireLogin');
 
 router.post('/', requireLogin, async(req, res, next)=>{
-    console.log("CREATING A REVIEW OF A ROAST");
-    console.log(req.body);
     const reviewData = {
         ...req.body,
         reviewer: req.user._id

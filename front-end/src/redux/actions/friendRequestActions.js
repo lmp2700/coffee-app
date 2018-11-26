@@ -26,9 +26,10 @@ export const acceptFriendRequest = async (dispatch, id) => {
     })
 }
 export const createFriendRequest = async (dispatch, id) => {
-    const friendship = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/users/${id}/request-friend`, {
+    const friendship = await fetch(`${process.env.REACT_APP_API_HOST}/friend-requests/`, {
         method: "POST",
         credentials: 'include',
+        body: JSON.stringify({requestedFriendId: id}),
         headers: {
             'Content-Type': 'application/json'
         }

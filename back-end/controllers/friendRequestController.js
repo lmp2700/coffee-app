@@ -4,7 +4,7 @@ const FriendRequest = require('../models/FriendRequest');
 //THEREFORE ALL ROUTES ALREADY HAVE A LOGGED IN USER
 router.get('/', async (req, res, next) => {
     try{
-        const friendRequestsForYou = await FriendRequest.find({requested: req.user._id});
+        const friendRequestsForYou = await FriendRequest.find({requested: req.user._id}).populate('requester');
         const friendRequestsYouHaveMade = await FriendRequest.find({requester: req.user._id});
         res.json({
             status: 200,

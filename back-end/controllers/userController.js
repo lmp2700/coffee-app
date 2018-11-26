@@ -3,7 +3,7 @@ const User = require('../models/User');
 const requireLogin = require('../middleware/requireLogin');
 const FriendRequest = require('../models/FriendRequest');
 
-router.get('/', async (req, res)=>{
+router.get('/search', async (req, res)=>{
     query = req.query.query || "";
     try{
         const users = await User.find({_id: { $ne: req.user._id },
