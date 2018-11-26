@@ -58,8 +58,8 @@ const authReducer = (state = initialState, action) => {
         case 'LOAD_FRIEND_REQUESTS':
             return{
                 ...state,
-                friendRequestsForYou: [action.payload.friendRequestsForYou],
-                friendRequestsYouHaveMade: [action.payload.friendRequestsYouHaveMade]
+                friendRequestsForYou: action.payload.friendRequestsForYou,
+                friendRequestsYouHaveMade: action.payload.friendRequestsYouHaveMade
             }
         case 'ACCEPT_FRIEND_REQUESTS':
             //add the new person to friends AND

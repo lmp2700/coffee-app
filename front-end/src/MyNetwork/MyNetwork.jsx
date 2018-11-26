@@ -6,6 +6,9 @@ class MyNetwork extends Component{
     constructor(){
         super();
     }
+    componentDidMount(){
+        this.props.loadFriendRequests();
+    }
 
     render(){
         console.log(this.props)

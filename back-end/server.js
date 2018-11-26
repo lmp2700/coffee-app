@@ -63,7 +63,7 @@ app.use('/api/v1/users', userController)
 app.use('/api/v1/roasters', roasterController);
 app.use('/api/v1/roasts', roastController);
 app.use('/api/v1/roasts/:id/reviews', roastReviewController);
-app.use('/api/v1/friendRequests', requireLogin, friendRequestController);
+app.use('/api/v1/friend-requests', requireLogin, friendRequestController);
 
 //ERROR HANDLING
 app.use(function (err, req, res, next) {

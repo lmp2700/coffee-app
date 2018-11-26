@@ -1,10 +1,18 @@
 const router = require('express').Router();
 const FriendRequest = require('../models/FriendRequest');
-
+//LOGGING IN WAS REQUIRED BEFORE THIS CONTROLLER
+//THEREFORE ALL ROUTES ALREADY HAVE A LOGGED IN USER
 router.get('/', async (req, res, next) => {
     try{
         const friendRequestsForYou = await FriendRequest.find({requested: req.user._id});
-        const friendRequestsYouMade = await FriendRequest.find({requester: req.user._id});
+        const friendRequestsYouHaveMade = await FriendRequest.find({requester: req.user._id});
+        res.json({
+            status: 200,
+            data: {
+                friendRequestsForYou: friendRequestsForYou,
+                friendRequestsYouHaveMade: friendRequestsYouHaveMade
+            }
+        })
     }catch(err){
         next(err);
     }

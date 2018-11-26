@@ -1,7 +1,7 @@
 import { LOAD_FRIEND_REQUESTS, CREATE_FRIEND_REQUEST, ACCEPT_FRIEND_REQUEST, DECLINE_FRIEND_REQUEST } from './actionTypes';
 
 export const loadFriendRequests = async (dispatch) => {
-    const friendRequests = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/users/friend-requests`, {
+    const friendRequests = await fetch(`${process.env.REACT_APP_API_HOST}/friend-requests`, {
         method: "GET",
         credentials: 'include'
     });
