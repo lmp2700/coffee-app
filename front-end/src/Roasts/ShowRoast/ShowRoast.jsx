@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { loadRoast } from '../../redux/actions/roastActions';
 import RoastReviewFormModal from './RoastReviewFormModal/RoastReviewFormModal';
+import './style.css';
 
 class ShowRoast extends Component{
     componentDidMount(){
@@ -15,6 +16,7 @@ class ShowRoast extends Component{
                 <div key={review._id}>
                     <h4>{review.title} {review.rating}/5</h4>
                     <h6>{review.reviewer.username}</h6>
+                    <p>{review.body}</p>
                 </div>
             )
         })
@@ -25,7 +27,8 @@ class ShowRoast extends Component{
                         <h2>{this.props.roast.name}</h2>
                         <h5>Roasted by: <Link to={`/roasters/${this.props.roast.roaster._id}`}>{this.props.roast.roaster.name}</Link></h5>
                         <p>Origin: {this.props.roast.origin}</p>
-         {/* improve progress bar with https://reactstrap.github.io/components/progress/ */}
+                        <p>{this.props.roast.description}</p>
+                        {/* TODO: improve progress bar with https://reactstrap.github.io/components/progress/ */}
                         <Row className="roast-color-detail">
                             <Col>
                                 <p className="float-left">Light</p>
@@ -33,12 +36,12 @@ class ShowRoast extends Component{
                             <Col>
                                 <p className="float-right">Dark</p>
                             </Col>
-                        
                         </Row>
                         <Progress value={this.props.roast.color} />
                         <RoastReviewFormModal roast={this.props.roast}/>
                     </Col>
                     <Col sm={4}>
+                        <h4>Reviews</h4>
                         {reviews}
                     </Col>
                 </Row>

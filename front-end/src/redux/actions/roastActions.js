@@ -14,7 +14,7 @@ export const createRoast = async(dispatch, formData, history) => {
         type: CREATE_ROAST,
         payload: parsedNewCoffee.data
     })
-    history.push('/coffee/'+ parsedNewCoffee.data._id)
+    history.push('/roasts/'+ parsedNewCoffee.data._id)
 }
 
 export const loadRoast = async(dispatch, roastId)=>{

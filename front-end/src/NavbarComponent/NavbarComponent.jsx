@@ -22,6 +22,7 @@ class NavbarComponent extends Component{
       }
       render() {
         return this.props.auth.loggedIn ? 
+            //NAVBAR FOR LOGGED IN USERS
             <Navbar dark expand="md">
               <NavbarBrand tag={Link} to="/">Bean Scout</NavbarBrand>
               <NavbarToggler onClick={this.toggle} />
@@ -49,6 +50,9 @@ class NavbarComponent extends Component{
                     </DropdownMenu>
                   </UncontrolledDropdown>
                     <NavItem>
+                      <NavLink tag={Link} to="/mynetwork">My Network</NavLink>
+                    </NavItem>
+                    <NavItem>
                       <NavLink tag={Link} to="/me">My Profile</NavLink>
                     </NavItem>
                     <NavItem>
@@ -58,7 +62,7 @@ class NavbarComponent extends Component{
               </Collapse>
             </Navbar>
           :
-          //NAVBAR FOR STRANGERS
+          //NAVBAR FOR STRANGERS (NON-LOGGED IN USERS)
           <Navbar dark expand="md">
           <NavbarBrand tag={Link} to="/">Bean Scout</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />

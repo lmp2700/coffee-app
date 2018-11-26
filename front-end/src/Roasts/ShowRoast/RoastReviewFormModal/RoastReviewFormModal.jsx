@@ -40,7 +40,7 @@ class RoastReviewFormModal extends Component{
     render(){
         return(
             <div>
-                <Button color="danger" onClick={this.toggle}>Add a review</Button>
+                <Button color="success" className="roast-review-form-modal-button" onClick={this.toggle}>Add a review</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                 <ModalHeader toggle={this.toggle}>Review {this.props.roast.name}</ModalHeader>
                 <ModalBody>

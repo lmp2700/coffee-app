@@ -7,7 +7,9 @@ const initialState = {
         _id: '',
         friends: [],
         profile: {}
-    }
+    },
+    friendRequestsYouHaveMade: [],
+    friendRequestsForYou: []
 };
 
 const authReducer = (state = initialState, action) => {
@@ -47,6 +49,23 @@ const authReducer = (state = initialState, action) => {
             return{
                 ...state,
                 currentUser: action.payload
+            }
+        case 'CREATE_FRIEND_REQUEST':
+            return{
+                ...state,
+                friendRequestsYouHaveMade: [...state.friendRequestsYouHaveMade, action.payload]
+            }
+        case 'LOAD_FRIEND_REQUESTS':
+            return{
+                ...state,
+                friendRequestsForYou: [action.payload.friendRequestsForYou],
+                friendRequestsYouHaveMade: [action.payload.friendRequestsYouHaveMade]
+            }
+        case 'ACCEPT_FRIEND_REQUESTS':
+            //add the new person to friends AND
+            //remove the friend request from requests you have made
+            return{
+                ...state
             }
         default:
             return state;

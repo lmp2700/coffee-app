@@ -11,6 +11,7 @@ import Profile from './Profile/Profile';
 import NavbarComponent from './NavbarComponent/NavbarComponent';
 import Roasters from './Roasters/Roasters';
 import RoasterSearchResults from './SearchResults/RoasterSearchResults';
+import MyNetwork from './MyNetwork/MyNetwork';
 
 class App extends Component {
   componentDidMount(){
@@ -23,6 +24,7 @@ class App extends Component {
                 <Switch>
                   <Route exact path="/login" component = {AuthGateway} />
                   <Route path="/me/" component={Profile} />
+                  <Route path="/mynetwork" component = {MyNetwork}/>
                   <Route path="/roasts/" component={Roasts} />
                   <Route path="/roasters/" component={Roasters} />
                   <Route path="/search/roasters/results" component={RoasterSearchResults} />

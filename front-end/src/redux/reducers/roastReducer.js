@@ -4,6 +4,7 @@ const initialState = {
         "name": null,
         "origin": null,
         "color": null,
+        "description": null,
         "roaster": {
             "name": null,
             "_id": null

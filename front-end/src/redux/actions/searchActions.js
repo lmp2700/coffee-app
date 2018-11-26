@@ -11,6 +11,6 @@ export const searchRoasters = async(dispatch, formData, history) => {
             type: SEARCH_ROASTERS,
             payload: parsed.data
         })
-        history.push('/search/roasters/results');
+        history.push(`/search/roasters/results?query=${formData.query}&location=denver`);
     }
 }

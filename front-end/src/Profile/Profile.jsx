@@ -21,7 +21,6 @@ class Profile extends Component {
                     </div>}
                     </Col>
                 </Row>
-                <p>{JSON.stringify(this.props.currentUser)}</p>
             </div>
         )
     }
