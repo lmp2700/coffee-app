@@ -1,7 +1,7 @@
 import { SEARCH_ROASTERS, SEARCH_USERS, SEARCH_ROASTS } from './actionTypes';
 
 export const searchRoasters = async(dispatch, formData, history) => {
-    const response = await fetch(`${process.env.REACT_APP_API_HOST}/roasters/search?location=denver&query=${formData.query}`, {
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/roasters/search?location=${formData.location}&query=${formData.query}`, {
         credentials: 'include',
     });
     const parsed = await response.json();

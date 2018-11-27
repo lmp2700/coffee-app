@@ -8,7 +8,8 @@ class NavbarSearchForm extends Component {
     constructor(){
         super();
         this.state = {
-            "query": ""
+            "query": "",
+            "location": ""
         }
     }
     handleNavbarSearch = (e) => {
@@ -24,7 +25,8 @@ class NavbarSearchForm extends Component {
         return (
         <Form inline onSubmit={this.handleNavbarSearch}>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-            <Input type="text" name="query" onChange={this.handleChange} placeholder="Search roasters, roasts, people..." />
+            <Input type="text" name="query" onChange={this.handleChange} placeholder="Search roasters" />
+            <Input type="text" name="location" onChange={this.handleChange} placeholder="Near"/>
             </FormGroup>
             <Button className="btn-success">Search</Button>
         </Form>

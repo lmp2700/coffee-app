@@ -18,9 +18,11 @@ class MyNetwork extends Component{
             <div className="my-network">
                 <Row>
                     <Col sm={4}>
+                        <h4>Find new contacts</h4>
                         <UsersSearch/>
                     </Col>
                     <Col sm={8}>
+                        <h4>Your contacts</h4>
                         <MyFriendsModal/>
                         <FriendRequestsForYou/>
                     </Col>

@@ -26,9 +26,10 @@ router.get('/search', async(req, res, next) => {
         }
         const existingSearch = await MapsQuery.find({
             query: req.query.query,
+            location: req.query.location
         })
         if(existingSearch.length === 0){
-            await MapsQuery.create({query: req.query.query})
+            await MapsQuery.create({query: req.query.query, location: req.query.location})
             googleMapsClient.geocode({
                 address: req.query.location
             }, (err, response)=>{
