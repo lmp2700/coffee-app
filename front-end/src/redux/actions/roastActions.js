@@ -30,7 +30,7 @@ export const loadRoast = async(dispatch, roastId)=>{
 
 export const createReview = async(dispatch, formData, history) => {
     console.log("CREATING A REVIEW IN ACTIONS");
-    const newReview = await fetch(`${process.env.REACT_APP_API_HOST}/roasts/${formData.roastId}/reviews`, {
+    const newReview = await fetch(`${process.env.REACT_APP_API_HOST}/roasts/${formData.roast}/reviews`, {
         credentials: 'include',
         method: "POST",
         body: JSON.stringify(formData),
@@ -40,10 +40,16 @@ export const createReview = async(dispatch, formData, history) => {
     })
     const newReviewParsed = await newReview.json();
     console.log(newReviewParsed);
-    dispatch({
-        type: CREATE_ROAST_REVIEW,
-        payload: newReviewParsed.data
-    })
+    if(newReviewParsed.status === 200){
+        dispatch({
+            type: CREATE_ROAST_REVIEW,
+            payload: newReviewParsed.data
+        })
+        //only needs to redirect if not already on roast page
+        if(history){
+            history.push(`/roasts/${formData.roast}`)
+        }
+    }
 }
 
 export const loadRoasts = async (dispatch) => {

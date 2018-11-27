@@ -5,6 +5,7 @@ import { loadRoasts, createReview } from '../../redux/actions/roastActions';
 import AutoSuggest from 'react-autosuggest';
 import './style.css';
 
+// https://github.com/moroshko/react-autosuggest
  // When suggestion is clicked, Autosuggest needs to populate the input
 // based on the clicked suggestion. Teach Autosuggest how to calculate the
 // input value for every given suggestion.
@@ -22,7 +23,7 @@ class NewRoastReview extends Component{
     constructor(){
         super();
         this.state = {
-            roastId: null,
+            roast: null,
             query: "",
             title: "",
             body: "",
@@ -40,7 +41,7 @@ class NewRoastReview extends Component{
         if(e.type !== "click"){
             this.setState({
                 query: e.currentTarget.value.toString(),
-                roastId: null
+                roast: null
             })
         }
     }
@@ -52,6 +53,8 @@ class NewRoastReview extends Component{
     }
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log(this.state);
+        this.props.createReview(this.state);
     }
     getSuggestions = (value) => {
         const inputValue = value.trim().toLowerCase();
@@ -60,7 +63,7 @@ class NewRoastReview extends Component{
         return inputLength === 0 ? [] : this.props.roasts.filter(roast =>
         //do the first letters of the name match whats typed so far?
         roast.name.toLowerCase().slice(0, inputLength) === inputValue
-        );
+        ).slice(0, 20);
     }
     // This should happen when we request suggestions to filter things down
     onSuggestionsFetchRequested = ({ value, reason }) => {
@@ -79,7 +82,7 @@ class NewRoastReview extends Component{
     selectSuggestion = (e, {suggestion, suggestionValue}) => {
         this.setState({
             query: suggestion.name,
-            roastId: suggestionValue,
+            roast: suggestionValue,
             roastChosenError: false
         })
     }
@@ -87,7 +90,7 @@ class NewRoastReview extends Component{
         //IF THEY CLICK OFF JUST PICK FOR THEM
         if(this.state.roastSuggestions.length > 0){
             this.setState({
-                roastId: this.state.roastSuggestions[0]._id,
+                roast: this.state.roastSuggestions[0]._id,
                 query: this.state.roastSuggestions[0].name,
                 roastChosenError: false
             })
@@ -123,7 +126,7 @@ class NewRoastReview extends Component{
                                     inputProps={inputProps}
                                     onSuggestionSelected={this.selectSuggestion}
                                 />
-                                {this.state.roastChosenError && !this.state.roastId ? <p>Choose a valid roast</p> : null}
+                                {this.state.roastChosenError && !this.state.roast ? <p>Choose a valid roast</p> : null}
                                 </Col>
                                 <Col sm={4}>
                                     
@@ -155,10 +158,10 @@ const mapStateToProps = (state) => {
         roasts: state.roasts.roasts
     }
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return{
         loadRoasts: () => { loadRoasts(dispatch)},
-        createReview: (formData)=> { createReview(dispatch, formData)}
+        createReview: (formData)=> { createReview(dispatch, formData, ownProps.history)}
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewRoastReview);
