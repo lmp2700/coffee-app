@@ -12,8 +12,8 @@ export const loadFriendRequests = async (dispatch) => {
     })
 }
 export const acceptFriendRequest = async (dispatch, id) => {
-    const friendship = await fetch(`${process.env.REACT_APP_API_HOST}/api/v1/users/${id}/add-friend`, {
-        method: "POST",
+    const friendship = await fetch(`${process.env.REACT_APP_API_HOST}/friend-requests/${id}/accept`, {
+        method: "PUT",
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export const acceptFriendRequest = async (dispatch, id) => {
     const parsed = await friendship.json();
     dispatch({
         type: ACCEPT_FRIEND_REQUEST,
-        payload: parsed.data.user
+        payload: parsed.data
     })
 }
 export const createFriendRequest = async (dispatch, id) => {

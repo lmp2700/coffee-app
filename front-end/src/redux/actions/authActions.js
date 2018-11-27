@@ -44,6 +44,7 @@ export const login = async (dispatch, formData, history) => {
     })
     const parsedResponse = await validLogin.json()
     if(parsedResponse.status === 200){
+        console.log(parsedResponse);
         dispatch({
             type: LOGIN,
             payload: parsedResponse.data.user

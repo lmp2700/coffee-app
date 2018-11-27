@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { createFriendRequest, loadFriendRequests } from '../redux/actions/friendRequestActions';
 import { Row, Col } from 'reactstrap';
 import UsersSearch from './UsersSearch/UsersSearch';
+import FriendRequestsForYou from './FriendRequestsForYou/FriendRequestsForYou';
+import MyFriendsModal from './MyFriendsModal/MyFriendsModal';
 import './style.css';
 
 class MyNetwork extends Component{
@@ -14,6 +16,7 @@ class MyNetwork extends Component{
     }
 
     render(){
+        console.log(this.props);
         return(
             <div className="my-network">
                 <Row>
@@ -22,6 +25,9 @@ class MyNetwork extends Component{
                     </Col>
                     <Col sm={8}>
                         <h2>Here's your friends and requests and such</h2>
+                        <FriendRequestsForYou/>
+                        <p>You have {this.props.auth.currentUser.friends.length} friends</p>
+                        <MyFriendsModal/>
                     </Col>
                 </Row>
             </div>

@@ -76,18 +76,16 @@ router.post('/login', (req, res, next)=>{
                 }
             })
         }
-        req.logIn(user, function(err){
+        req.logIn(user, async function(err){
             if(err){
                 return next(err);
             }
+            const thisUser = await User.findById(user._id).populate('friends')
             return res.json({
                 "status": 200,
                 "data": {
                     valid: true,
-                    user: {
-                        ...user._doc,
-                        password: null
-                    }
+                    user: thisUser
                 }
             })
         })

@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const FriendRequest = require('../models/FriendRequest');
+const User = require('../models/User');
 //LOGGING IN WAS REQUIRED BEFORE THIS CONTROLLER
 //THEREFORE ALL ROUTES ALREADY HAVE A LOGGED IN USER
 router.get('/', async (req, res, next) => {
     try{
-        const friendRequestsForYou = await FriendRequest.find({requested: req.user._id}).populate('requester');
-        const friendRequestsYouHaveMade = await FriendRequest.find({requester: req.user._id});
+        const friendRequestsForYou = await FriendRequest.find({requested: req.user._id, accepted: false, declined: false}).populate('requester');
+        const friendRequestsYouHaveMade = await FriendRequest.find({requester: req.user._id, accepted: false, declined: false});
         res.json({
             status: 200,
             data: {
@@ -41,19 +42,25 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id/accept', async (req, res, next) => {
     try{
-        const thisFriendRequest = await FriendRequest.findById(req.params.id);
-        if(this.FriendRequest.requested !== req.user._id){
+        console.log("ACCEPTING THIS REQUEST");
+        const thisFriendRequest = await FriendRequest.findById(req.params.id).populate('requester');
+        if(thisFriendRequest.requested.toString() !== req.user._id.toString()){
             throw new Error("Unauthorized attempt to modify friend request");
         }
-        if(req.body.accepted){
-            thisFriendRequest.accepted = true;
-            await thisFriendRequest.save();
-        }else if(req.body.declined){
-            this.FriendRequest.declined = true;
-            await thisFriendRequest.save();
-        }
+        thisFriendRequest.accepted = true;
+        await thisFriendRequest.save();
+        req.user.friends.addToSet(thisFriendRequest.requester._id);
+        await req.user.save();
+        const otherUser = await User.findById(thisFriendRequest.requester._id);
+        otherUser.friends.addToSet(req.user._id);
+        await otherUser.save()
+        console.log(thisFriendRequest);
+        res.json({
+            status: 200,
+            data: thisFriendRequest
+        })
     }catch(err){
         next(err);
     }

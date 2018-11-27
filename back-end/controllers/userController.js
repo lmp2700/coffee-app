@@ -39,21 +39,6 @@ router.post('/:id/add-friend', async (req, res, next)=>{
         next(err);
     }
 })
-router.get('/friend-requests', async (req, res, next)=>{
-    try{
-        const friendRequests = await FriendRequest.find({$or:[
-            {"requested": req.user._id,"accepted":false},
-            {"requester": req.user._id,"accepted": false}]})
-        .populate({"path": "requester","select":"-password"})
-        .populate({"path": "requested","select":"-password"})
-        res.json({
-            status: 200,
-            data: friendRequests
-        })
-    } catch(err){
-        next(err);
-    }
-})
 
 router.put('/:id', requireLogin, async(req, res, next)=>{
     try{

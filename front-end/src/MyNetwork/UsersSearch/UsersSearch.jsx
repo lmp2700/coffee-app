@@ -21,9 +21,10 @@ class UsersSearch extends Component{
         this.props.searchUsers(this.state.query);
     }
     render(){
-        console.log(this.props.currentUser);
         const nonFriends = this.props.searchResults.filter((user)=>{
-            return this.props.currentUser.friends.indexOf(user) === -1;
+            return !this.props.currentUser.friends.find((friend) => {
+                return friend.username === user.username
+            });
         })
         const searchResults = nonFriends.map((result)=>{
             return(
@@ -40,7 +41,6 @@ class UsersSearch extends Component{
                     <Button type="submit">Search for users</Button>
                 </Form>
                 {searchResults}
-                
             </div>
         )
     }
