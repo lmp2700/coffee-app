@@ -8,13 +8,10 @@ import MyFriendsModal from './MyFriendsModal/MyFriendsModal';
 import './style.css';
 
 class MyNetwork extends Component{
-    constructor(){
-        super();
-    }
     componentDidMount(){
+        //Maybe these should be loaded elsewhere, navbar might want them
         this.props.loadFriendRequests();
     }
-
     render(){
         console.log(this.props);
         return(
@@ -24,10 +21,8 @@ class MyNetwork extends Component{
                         <UsersSearch/>
                     </Col>
                     <Col sm={8}>
-                        <h2>Here's your friends and requests and such</h2>
-                        <FriendRequestsForYou/>
-                        <p>You have {this.props.auth.currentUser.friends.length} friends</p>
                         <MyFriendsModal/>
+                        <FriendRequestsForYou/>
                     </Col>
                 </Row>
             </div>

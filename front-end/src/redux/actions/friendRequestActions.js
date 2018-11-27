@@ -25,6 +25,20 @@ export const acceptFriendRequest = async (dispatch, id) => {
         payload: parsed.data
     })
 }
+export const declineFriendRequest = async(dispatch, id) => {
+    const friendship = await fetch(`${process.env.REACT_APP_API_HOST}/friend-requests/${id}/decline`, {
+        method: "PUT",
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    const parsed = await friendship.json();
+    dispatch({
+        type: DECLINE_FRIEND_REQUEST,
+        payload: parsed.data
+    })
+}
 export const createFriendRequest = async (dispatch, id) => {
     const friendship = await fetch(`${process.env.REACT_APP_API_HOST}/friend-requests/`, {
         method: "POST",

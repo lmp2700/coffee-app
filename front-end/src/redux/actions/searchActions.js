@@ -1,4 +1,4 @@
-import { SEARCH_ROASTERS, SEARCH_USERS } from './actionTypes';
+import { SEARCH_ROASTERS, SEARCH_USERS, SEARCH_ROASTS } from './actionTypes';
 
 export const searchRoasters = async(dispatch, formData, history) => {
     const response = await fetch(`${process.env.REACT_APP_API_HOST}/roasters/search?location=denver&query=${formData.query}`, {
@@ -24,6 +24,20 @@ export const searchUsers = async(dispatch, query) => {
     if(parsedResponse.status === 200){
         dispatch({
             type: SEARCH_USERS,
+            payload: parsedResponse.data
+        })
+    }
+}
+
+export const searchRoasts = async(dispatch, query) => {
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/roasts/search?query=${query}`, {
+        credentials: 'include'
+    })
+    const parsedResponse = await response.json();
+    console.log(parsedResponse);
+    if(parsedResponse.status === 200){
+        dispatch({
+            type: SEARCH_ROASTS,
             payload: parsedResponse.data
         })
     }

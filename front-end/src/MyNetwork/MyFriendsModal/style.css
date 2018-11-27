@@ -1,0 +1,6 @@
+.my-friends-modal p, .my-friends-modal button {
+    display: inline-block;
+}
+.my-friends-modal button {
+    margin-left: 1em;
+}

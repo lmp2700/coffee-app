@@ -72,6 +72,11 @@ const authReducer = (state = initialState, action) => {
                     friends: [...state.currentUser.friends, action.payload.requester]
                 }
             }
+        case 'DECLINE_FRIEND_REQUEST':
+            return{
+                ...state,
+                friendRequestsForYou: state.friendRequestsForYou.filter(request => request._id !== action.payload._id)
+            }
         default:
             return state;
     }

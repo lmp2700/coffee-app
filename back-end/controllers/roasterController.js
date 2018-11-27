@@ -43,7 +43,7 @@ router.get('/search', async(req, res, next) => {
                             next(err);
                         }else{
                             const creationPromises = response.json.results.map(async (result)=>{
-                                console.log(result);
+                                console.log(result.photos);
                                 const thisRoaster = {
                                     name: result.name,
                                     address: result.formatted_address,

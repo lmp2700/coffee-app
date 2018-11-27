@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Button, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
-import { acceptFriendRequest } from '../../redux/actions/friendRequestActions';
+import { acceptFriendRequest, declineFriendRequest } from '../../redux/actions/friendRequestActions';
+import './style.css';
 class FriendRequestsForYou extends Component{
-    constructor(){
-        super();
-    }
     render(){
         const requests = this.props.friendRequests.map((request)=>{
             return(
-                <div>
-                    <p>{request.requester.displayName} wants to connect with you</p>
-                    <Button color="success" onClick={this.props.acceptFriendRequest.bind(null, request._id)}>Accept</Button>
-                </div>
+                <Row key={request._id}>
+                    <Col sm={8}>
+                        <p>{request.requester.displayName} wants to connect with you</p>
+                    </Col>
+                    <Col sm={4} className="friend-request-response-buttons">
+                        <Button color="success" onClick={this.props.acceptFriendRequest.bind(null, request._id)}>Accept</Button>
+                        <Button color="danger" onClick={this.props.declineFriendRequest.bind(null, request._id)}>Decline</Button>
+                    </Col>
+                </Row>
             )
         })
         return(
@@ -29,7 +32,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return{
-        acceptFriendRequest: (requestId) => { acceptFriendRequest(dispatch, requestId) }
+        acceptFriendRequest: (requestId) => { acceptFriendRequest(dispatch, requestId) },
+        declineFriendRequest: (requestId) => { declineFriendRequest(dispatch, requestId) }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(FriendRequestsForYou);

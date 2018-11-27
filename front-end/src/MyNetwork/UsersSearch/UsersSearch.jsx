@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Form, Input, Button } from 'reactstrap'
+import { Form, Input, Button } from 'reactstrap'
 import { connect } from 'react-redux';
 import { searchUsers } from '../../redux/actions/searchActions';
 import { createFriendRequest } from '../../redux/actions/friendRequestActions';
@@ -26,6 +26,12 @@ class UsersSearch extends Component{
                 return friend.username === user.username
             });
         })
+        const myFriends = this.props.searchResults.filter((user)=>{
+            return this.props.currentUser.friends.find((friend)=>{
+                return friend.username === user.username
+            })
+        })
+        console.log(myFriends);
         const searchResults = nonFriends.map((result)=>{
             return(
                 <div key={result._id} className="user-search-result">

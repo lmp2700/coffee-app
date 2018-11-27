@@ -44,7 +44,6 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id/accept', async (req, res, next) => {
     try{
-        console.log("ACCEPTING THIS REQUEST");
         const thisFriendRequest = await FriendRequest.findById(req.params.id).populate('requester');
         if(thisFriendRequest.requested.toString() !== req.user._id.toString()){
             throw new Error("Unauthorized attempt to modify friend request");
@@ -56,7 +55,23 @@ router.put('/:id/accept', async (req, res, next) => {
         const otherUser = await User.findById(thisFriendRequest.requester._id);
         otherUser.friends.addToSet(req.user._id);
         await otherUser.save()
-        console.log(thisFriendRequest);
+        res.json({
+            status: 200,
+            data: thisFriendRequest
+        })
+    }catch(err){
+        next(err);
+    }
+})
+
+router.put('/:id/decline', async (req, res, next) => {
+    try{
+        const thisFriendRequest = await FriendRequest.findById(req.params.id).populate('requester');
+        if(thisFriendRequest.requested.toString() !== req.user._id.toString()){
+            throw new Error("Unauthorized attempt to modify friend request");
+        }
+        thisFriendRequest.declined = true;
+        await thisFriendRequest.save();
         res.json({
             status: 200,
             data: thisFriendRequest
