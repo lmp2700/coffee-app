@@ -25,7 +25,7 @@ router.get('/search', async(req, res, next) => {
             console.log("LOCATOINLESS SEARCH");
         }
         const existingSearch = await MapsQuery.find({
-            query: req.query.query,
+            query: req.query.query || " ",
             location: req.query.location
         })
         if(existingSearch.length === 0){
