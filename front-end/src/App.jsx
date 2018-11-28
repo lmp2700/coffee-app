@@ -21,6 +21,7 @@ class App extends Component {
     return (
       <Container fluid={true}>
         <NavbarComponent/>
+        <div className="main-section">
                 <Switch>
                   <Route exact path="/login" component = {AuthGateway} />
                   <Route path="/me/" component={Profile} />
@@ -30,6 +31,7 @@ class App extends Component {
                   <Route path="/search/roasters/results" component={RoasterSearchResults} />
                   <Route exact path="/" component = {Dashboard}/>
                 </Switch>
+        </div>
       </Container>
     );
   }

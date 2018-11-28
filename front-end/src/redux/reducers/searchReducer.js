@@ -13,7 +13,7 @@ const searchReducer = (state = initialState, action) => {
                 ...initialState,
                 generalResults: action.payload
             }
-        case 'ROAST_SEARCH':
+        case 'SEARCH_ROASTS':
             return{
                 ...initialState,
                 roastResults: action.payload
