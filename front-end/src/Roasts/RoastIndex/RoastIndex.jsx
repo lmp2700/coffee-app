@@ -11,7 +11,6 @@ class RoastIndex extends Component{
         this.props.loadRoasts()
     }
     render(){
-        console.log(this.props.roastSearchResults)
         const roasts = this.props.roasts.map((roast)=>{
             return(
                 <div key={roast._id}>
@@ -26,19 +25,17 @@ class RoastIndex extends Component{
                 </Row>
             )
         })
-        console.log(this.props)
         return(
-                <Row>
-                    <Col sm={3}>
-                        <h3>Top roasts</h3>
-                        {roasts}
-                    </Col>
-                    <Col sm={9}>
-                        <RoastSearch/>
-                        
-                        {searchResults}
-                    </Col>
-                </Row>
+            <Row>
+                <Col sm={3}>
+                    <h3>Top roasts</h3>
+                    {roasts}
+                </Col>
+                <Col sm={9}>
+                    <RoastSearch/>
+                    {searchResults}
+                </Col>
+            </Row>
         )
     }
 }
@@ -51,7 +48,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return{
         loadRoasts: ()=>{ loadRoasts(dispatch) },
-        searchRoasts: (query) => { searchRoasts(dispatch, query)}
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(RoastIndex);

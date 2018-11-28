@@ -6,7 +6,6 @@ export const searchRoasters = async(dispatch, formData, history) => {
     });
     const parsed = await response.json();
     if(parsed.status === 200){
-        console.log(parsed);
         dispatch({
             type: SEARCH_ROASTERS,
             payload: parsed.data
@@ -29,8 +28,10 @@ export const searchUsers = async(dispatch, query) => {
     }
 }
 
-export const searchRoasts = async(dispatch, query) => {
-    const response = await fetch(`${process.env.REACT_APP_API_HOST}/roasts/search?query=${query}`, {
+export const searchRoasts = async(dispatch, formData) => {
+    console.log("searching ROASTS");
+    console.log(formData)
+    const response = await fetch(`${process.env.REACT_APP_API_HOST}/roasts/search?query=${formData.query}`, {
         credentials: 'include'
     })
     const parsedResponse = await response.json();

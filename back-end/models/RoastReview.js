@@ -23,7 +23,8 @@ const RoastReviewSchema = new Schema({
         max: 5,
         min: 1,
         required: true
-    }
+    },
+    flavors: [{type: String}]
 }, {
     timestamps: true
 })

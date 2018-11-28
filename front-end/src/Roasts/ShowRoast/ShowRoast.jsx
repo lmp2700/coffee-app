@@ -20,11 +20,16 @@ class ShowRoast extends Component{
                 </div>
             )
         })
+        let totalRating = 0;
+        for(let i = 0; i < this.props.roast.reviews.length; i++){
+            totalRating += this.props.roast.reviews[i].rating
+        }
+        const averageRating = totalRating / this.props.roast.reviews.length;
         return(
             <div>
                 <Row className="roast-detail">
                     <Col sm={8}>
-                        <h2>{this.props.roast.name}</h2>
+                        <h2>{this.props.roast.name} {this.props.roast.reviews.length > 0 && `${averageRating}/5` }</h2>
                         <h5>Roasted by: <Link to={`/roasters/${this.props.roast.roaster._id}`}>{this.props.roast.roaster.name}</Link></h5>
                         <p>Origin: {this.props.roast.origin}</p>
                         <p>{this.props.roast.description}</p>

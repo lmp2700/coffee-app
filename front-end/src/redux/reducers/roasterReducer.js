@@ -1,5 +1,5 @@
 const intitialState = {
-    allRoasters: [],
+    roasters: [],
     currentRoaster: {
         name: null,
         _id: null,
@@ -12,7 +12,7 @@ const roasterReducer = (state = intitialState, action) => {
         case "LOAD_ROASTERS":
             return{
                 ...state,
-                allRoasters: action.payload
+                roasters: action.payload
             }
         case "LOAD_ROASTER":
             return{

@@ -12,22 +12,22 @@ class RoastSearch extends Component{
     }
     handleChange = (e) => {
         this.setState({
-            [e.currentTarget.name]: e.currentTarget.name
+            [e.currentTarget.name]: e.currentTarget.value
         })
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.searchRoasts(this.state.query);
+        this.props.searchRoasts(this.state);
     }
     render(){
         return(
-                <Form onSubmit={this.handleSubmit}>
-                    <FormGroup>
-                        <Label>Search Roasts</Label>
-                        <Input onChange={this.handleChange}/>
-                    </FormGroup>
-                    <Button type="submit">Search</Button>
-                </Form>
+            <Form onSubmit={this.handleSubmit}>
+                <FormGroup>
+                    <Label>Search Roasts</Label>
+                    <Input name="query" onChange={this.handleChange}/>
+                </FormGroup>
+                <Button type="submit">Search</Button>
+            </Form>
         )
     }
 }
@@ -38,7 +38,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return{
-        searchRoasts: (query) => { searchRoasts(dispatch, query)}
+        searchRoasts: (formData) => { searchRoasts(dispatch, formData)}
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(RoastSearch);

@@ -15,7 +15,9 @@ router.get('/', async(req, res, next)=>{
 
 router.get('/search', async(req, res, next) => {
     try{
-        const roasts = await Roast.find({name: new RegExp(req.query, 'i')});
+        console.log("SEARCHING");
+        console.log(req.query);
+        const roasts = await Roast.find({name: new RegExp(req.query.query, 'i')});
         res.json({
             status: 200, 
             data: roasts

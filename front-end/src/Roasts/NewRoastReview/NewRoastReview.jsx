@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Row, Col, Form, Label, Input, Button, FormGroup } from 'reactstrap';
 import { connect } from 'react-redux';
 import { loadRoasts, createReview } from '../../redux/actions/roastActions';
+import { Link } from 'react-router-dom';
 import AutoSuggest from 'react-autosuggest';
 import './style.css';
 
@@ -116,7 +117,8 @@ class NewRoastReview extends Component{
                         <h3>add a coffee review</h3>
                         <Form onSubmit={this.handleSubmit}>
                             <Row>
-                                <Col sm={8}>
+                                <Col sm={6}>
+                                    <Label>Roast:</Label>
                                     <AutoSuggest
                                     suggestions={this.state.roastSuggestions}
                                     onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -125,11 +127,12 @@ class NewRoastReview extends Component{
                                     renderSuggestion={renderSuggestion}
                                     inputProps={inputProps}
                                     onSuggestionSelected={this.selectSuggestion}
-                                />
+                                    />
                                 {this.state.roastChosenError && !this.state.roast ? <p>Choose a valid roast</p> : null}
                                 </Col>
-                                <Col sm={4}>
-                                    
+                                <Col sm={6}>
+                                    <p>Can't find the roast you want?</p>
+                                    <Link to="/roasts/new"><Button>Add a new roast</Button></Link>
                                 </Col>
                             </Row>
                             <FormGroup>

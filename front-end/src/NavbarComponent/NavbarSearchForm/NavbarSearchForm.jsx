@@ -24,7 +24,7 @@ class NavbarSearchForm extends Component {
     render() {
         return (
         <Form inline onSubmit={this.handleNavbarSearch}>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+            <FormGroup className="navbar-search-inputs">
             <Input type="text" name="query" onChange={this.handleChange} placeholder="Search roasters" />
             <Input type="text" name="location" onChange={this.handleChange} placeholder="Near"/>
             </FormGroup>

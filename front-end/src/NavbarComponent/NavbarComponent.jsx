@@ -41,6 +41,9 @@ class NavbarComponent extends Component{
                       <DropdownItem tag={Link} to="/roasts">
                         Browse Roasts
                       </DropdownItem>
+                      <DropdownItem tag={Link} to="/roasters">
+                        Browse Roasters
+                      </DropdownItem>
                       <DropdownItem tag={Link} to="/roasts/reviews/new">
                         Add a review
                       </DropdownItem>
@@ -53,7 +56,7 @@ class NavbarComponent extends Component{
                       <NavLink tag={Link} to="/mynetwork">My Network</NavLink>
                     </NavItem>
                     <NavItem>
-                      <NavLink tag={Link} to="/me">My Profile</NavLink>
+                      <NavLink tag={Link} to="/me">Me</NavLink>
                     </NavItem>
                     <NavItem>
                       <NavLink onClick={this.props.logout}>Logout</NavLink>
