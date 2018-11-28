@@ -6,10 +6,12 @@ const initialState = {
         username: '',
         _id: '',
         friends: [],
-        profile: {}
+        profile: {},
+        roastReviews: []
     },
     friendRequestsYouHaveMade: [],
-    friendRequestsForYou: []
+    friendRequestsForYou: [],
+    
 };
 
 const authReducer = (state = initialState, action) => {

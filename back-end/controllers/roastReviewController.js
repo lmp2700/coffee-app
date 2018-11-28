@@ -13,6 +13,8 @@ router.post('/', requireLogin, async(req, res, next)=>{
         const newReview = await RoastReview.create(reviewData);
         roast.reviews.push(newReview._id);
         await roast.save();
+        req.user.roastReviews.push(newReview._id);
+        await req.user.save();
         const result = await RoastReview.findById(newReview.id).populate('reviewer')
         res.json({
             status: 200,

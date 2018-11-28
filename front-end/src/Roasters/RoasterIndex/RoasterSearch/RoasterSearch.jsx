@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import { searchRoasters } from '../../../redux/actions/searchActions';
 
@@ -23,14 +23,22 @@ class RoasterSearch extends Component{
     render(){
         return(
             <Form onSubmit={this.handleSubmit}>
-                <FormGroup>
-                    <Label>Search Roasters</Label>
-                    <Input onChange={this.handleChange}/>
-                </FormGroup>
-                <FormGroup>
-                    <Label>Near</Label>
-                    <Input onChange={this.handleChange}/>
-                </FormGroup>
+                <Row>
+                    <Col>
+                        <FormGroup>
+                            <Label>Search Roasters</Label>
+                            <Input onChange={this.handleChange}/>
+                        </FormGroup>
+                    </Col>
+                    <Col>
+                        <FormGroup>
+                            <Label>Near</Label>
+                            <Input onChange={this.handleChange}/>
+                        </FormGroup>
+                    </Col>
+                </Row>
+
+                
                 <Button type="submit">Search</Button>
             </Form>
         )

@@ -3,7 +3,6 @@ import { Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loadRoasts } from '../../redux/actions/roastActions';
-import { searchRoasts } from '../../redux/actions/searchActions';
 import RoastSearch from './RoastSearch/RoastSearch';
 
 class RoastIndex extends Component{
