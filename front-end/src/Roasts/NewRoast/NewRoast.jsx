@@ -32,7 +32,7 @@ class NewRoast extends Component{
         this.props.createRoast(this.state.form)
     }
     render(){
-        const roasterOptions = this.props.allRoasters.map((roaster)=>{
+        const roasterOptions = this.props.roasters.map((roaster)=>{
             return <option value={roaster._id} key={roaster._id}>{roaster.name}</option>
         })
         return(
@@ -96,7 +96,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 const mapStateToProps = (state) => {
     return{
-        allRoasters: state.roasters.allRoasters
+        roasters: state.roasters.roasters
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewRoast)
