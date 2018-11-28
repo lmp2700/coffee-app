@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express();
+const path = require('path');
 const session = require("express-session");
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
@@ -31,7 +32,7 @@ app.use(cors({
 }));
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(morgan("short"));
 app.use(session({ 
     secret: "cats",
@@ -64,7 +65,10 @@ app.use('/api/v1/roasters', roasterController);
 app.use('/api/v1/roasts', roastController);
 app.use('/api/v1/roasts/:id/reviews', roastReviewController);
 app.use('/api/v1/friend-requests', requireLogin, friendRequestController);
-
+//SEND ALL OTHER GETS TO REACT APP
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/front-end/build/index.html'));
+});
 //ERROR HANDLING
 app.use(function (err, req, res, next) {
     console.log(err);
@@ -84,6 +88,6 @@ app.use(function (err, req, res, next) {
 })
 
 const port = process.env.PORT || 9000
-const server = app.listen(port, ()=>{
+app.listen(port, ()=>{
     console.log("Server is active")
 })
