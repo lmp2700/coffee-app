@@ -32,7 +32,7 @@ app.use(cors({
 }));
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'front-end/build')));
 app.use(morgan("short"));
 app.use(session({ 
     secret: "cats",
