@@ -12,6 +12,7 @@ class NewRoast extends Component{
                 "roaster": null,
                 "color": null,
                 "origin": null,
+                "flavors": null,
                 "description": null
             }
         }
@@ -70,6 +71,14 @@ class NewRoast extends Component{
                                 <FormGroup>
                                     <Label>Origin:</Label>
                                     <Input type="text" name="origin" onChange={this.handleChange}/>
+                                </FormGroup>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <FormGroup>
+                                    <Label>Flavors</Label>
+                                    <Input type="text" name="flavors" onChange={this.handleChange} />
                                 </FormGroup>
                             </Col>
                         </Row>

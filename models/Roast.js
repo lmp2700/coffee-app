@@ -6,6 +6,7 @@ const RoastSchema = new Schema({
     color: { type: Number, required: true },
     origin: { type: String},
     description: { type: String },
+    flavors: [{type: String}],
     roaster: { type: Schema.Types.ObjectId, ref: "Roaster" },
     reviews: [{type: Schema.Types.ObjectId, ref: "RoastReview"}]
 }, {

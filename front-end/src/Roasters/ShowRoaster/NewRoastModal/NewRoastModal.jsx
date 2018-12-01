@@ -13,6 +13,7 @@ class NewRoastModal extends Component{
             "roaster": null,
             "color": null,
             "origin": null,
+            "flavors": null,
             "description": null
           }
         };
@@ -43,44 +44,52 @@ class NewRoastModal extends Component{
     render(){
         return(
             <div>
-                <Button color="success" className="roast-review-form-modal-button" onClick={this.toggle}>Add a review</Button>
+                <Button color="success" className="roast-review-form-modal-button" onClick={this.toggle}>Add a roast</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                <ModalHeader toggle={this.toggle}>Add a roast to f{this.props.roaster.name}</ModalHeader>
+                <ModalHeader toggle={this.toggle}>Add a roast to {this.props.roaster.name}</ModalHeader>
                 <ModalBody>
                 <Form onSubmit={this.createRoast}>
-                        <Row>
-                            <Col sm={6}>
-                                <FormGroup>
-                                    <Label>Name:</Label>
-                                    <Input type="text" name="name" onChange={this.handleChange}/>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col sm={6}>
-                                <FormGroup>
-                                    <Label>Color:</Label>
-                                    <Input type="range" className="form-control-range" name="color" min="0" max="100" onChange={this.handleChange}/>
-                                    <Label className="float-left">Light</Label><Label className="float-right">Dark</Label>
-                                </FormGroup>
-                            </Col>
-                            <Col sm={6}>
-                                <FormGroup>
-                                    <Label>Origin:</Label>
-                                    <Input type="text" name="origin" onChange={this.handleChange}/>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <FormGroup>
-                                    <Label>Description</Label>
-                                    <Input type="textarea" name="description" onChange={this.handleChange}/>
-                                </FormGroup>
-                            </Col>
-                        </Row>
-                        <Button type="submit">Create</Button>
-                    </Form>
+                    <Row>
+                        <Col sm={6}>
+                            <FormGroup>
+                                <Label>Name:</Label>
+                                <Input type="text" name="name" onChange={this.handleChange}/>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={6}>
+                            <FormGroup>
+                                <Label>Color:</Label>
+                                <Input type="range" className="form-control-range" name="color" min="0" max="100" onChange={this.handleChange}/>
+                                <Label className="float-left">Light</Label><Label className="float-right">Dark</Label>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={6}>
+                            <FormGroup>
+                                <Label>Origin:</Label>
+                                <Input type="text" name="origin" onChange={this.handleChange}/>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <FormGroup>
+                                <Label>Flavors</Label>
+                                <Input type="text" name="flavors" onChange={this.handleChange} />
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <FormGroup>
+                                <Label>Description</Label>
+                                <Input type="textarea" name="description" onChange={this.handleChange}/>
+                            </FormGroup>
+                        </Col>
+                    </Row>
+                    <Button type="submit">Create</Button>
+                </Form>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={this.createRoast}>Add Review</Button>{' '}

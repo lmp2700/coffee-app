@@ -48,6 +48,7 @@ router.get('/:id', async(req, res, next)=>{
 
 router.post('/', async(req, res, next)=>{
     console.log(req.body);
+    //TODO: Split the flavors into an array
     try{
         const newRoast = await Roast.create(req.body);
         res.json({

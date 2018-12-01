@@ -21,10 +21,21 @@ const roastReducer = (state=initialState, action) => {
                 ...state,
                 dataLoaded: false
             }
+        case "ROASTS_LOADING":
+            return{
+                ...state,
+                dataLoaded: false
+            }
         case "LOAD_ROAST":
             return{
                 ...state,
                 currentRoast: action.payload,
+                dataLoaded: true
+            }
+        case "LOAD_ROASTS":
+            return{
+                ...state,
+                roasts: action.payload,
                 dataLoaded: true
             }
         case "CREATE_ROAST":
@@ -38,11 +49,6 @@ const roastReducer = (state=initialState, action) => {
                     ...state.currentRoast,
                     reviews: [...state.currentRoast.reviews, action.payload]
                 }
-            }
-        case "LOAD_ROASTS":
-            return{
-                ...state,
-                roasts: action.payload
             }
         default:
             return state;
