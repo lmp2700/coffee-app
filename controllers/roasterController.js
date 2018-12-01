@@ -89,7 +89,13 @@ router.get('/search', async(req, res, next) => {
 
 router.get('/:id', async(req, res, next)=>{
     try{
-        const roaster = await Roaster.findById(req.params.id);
+        const roaster = await Roaster.findById(req.params.id)
+        .populate({
+            path: 'reviews', 
+            populate: {
+                path: 'reviewer'
+            }
+        })
         const roasts = await Roast.find({roaster: req.params.id})
         res.json({
             status: 200, 

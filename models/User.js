@@ -31,7 +31,8 @@ const UserSchema = new mongoose.Schema({
     profile: { type: ProfileSchema, default: () => ({}) },
     roasterAuthorizations: [{type: Schema.Types.ObjectId, ref: "Roaster"}],
     friends: [{type: Schema.Types.ObjectId, ref: "User"}],
-    roastReviews: [{type: Schema.Types.ObjectId, ref: "RoastReview"}]
+    roastReviews: [{type: Schema.Types.ObjectId, ref: "RoastReview"}],
+    roasterReviews: [{type: Schema.Types.ObjectId, ref: 'RoasterReview'}]
 }, {
     timestamps: true
 })

@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import {connect} from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import { clearSearchResults } from '../redux/actions/searchActions';
 
 class RoasterSearchResults extends Component{
     componentDidMount(){
@@ -11,6 +12,10 @@ class RoasterSearchResults extends Component{
             // Either way, do a search so you can have search results automatically
             console.log("query params present")
         }
+    }
+    componentWillUnmount(){
+        console.log("NAVIGATING AWAY FROM SEARCH, TIME TO CLEAR RESULTS");
+        this.props.clearSearchResults();
     }
     render(){
         const results = this.props.results.map((roaster)=>{
@@ -34,7 +39,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return{
-        
+        clearSearchResults: ()=>{ dispatch(clearSearchResults)}
     }
 }
 

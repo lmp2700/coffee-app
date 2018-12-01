@@ -11,7 +11,7 @@ class NewRoastModal extends Component{
           form: {
             "name": "",
             "roaster": null,
-            "color": null,
+            "color": 50,
             "origin": null,
             "flavors": null,
             "description": null

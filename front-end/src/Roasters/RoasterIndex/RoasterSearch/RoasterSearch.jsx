@@ -13,7 +13,7 @@ class RoasterSearch extends Component{
     }
     handleChange = (e) => {
         this.setState({
-            [e.currentTarget.name]: e.currentTarget.name
+            [e.currentTarget.name]: e.currentTarget.value
         })
     }
     handleSubmit = (e) => {
@@ -27,13 +27,13 @@ class RoasterSearch extends Component{
                     <Col>
                         <FormGroup>
                             <Label>Search Roasters</Label>
-                            <Input onChange={this.handleChange}/>
+                            <Input name="query" onChange={this.handleChange}/>
                         </FormGroup>
                     </Col>
                     <Col>
                         <FormGroup>
                             <Label>Near</Label>
-                            <Input onChange={this.handleChange}/>
+                            <Input name="location" onChange={this.handleChange}/>
                         </FormGroup>
                     </Col>
                 </Row>
@@ -51,7 +51,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
     return{
-        searchRoasters: (formData) => { searchRoasters(dispatch, formData, ownProps.history)}
+        searchRoasters: (formData) => { searchRoasters(dispatch, formData)}
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(RoasterSearch);

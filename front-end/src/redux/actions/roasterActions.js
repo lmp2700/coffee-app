@@ -1,4 +1,4 @@
-import { LOAD_ROASTERS, LOAD_ROASTER } from './actionTypes';
+import { LOAD_ROASTERS, LOAD_ROASTER, CREATE_ROASTER_REVIEW } from './actionTypes';
 
 export const loadRoasters = async (dispatch) => {
     console.log("LOADING ROASTERS ALREADY");
@@ -27,4 +27,29 @@ export const loadRoaster = async(dispatch, roasterId)=>{
         type: LOAD_ROASTER,
         payload: thisRoasterParsed.data
     })
+}
+
+export const createReview = async(dispatch, formData, history) => {
+    console.log("CREATING A REVIEW IN ACTIONS");
+    const newReview = await fetch(`${process.env.REACT_APP_API_HOST}/roasters/${formData.roaster}/reviews`, {
+        credentials: 'include',
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    const newReviewParsed = await newReview.json();
+    console.log(newReviewParsed);
+    if(newReviewParsed.status === 200){
+        dispatch({
+            type: CREATE_ROASTER_REVIEW,
+            payload: newReviewParsed.data
+        })
+        //only needs to redirect if not already on roaster page
+        //calls from the roaster page will not include history
+        if(history){
+            history.push(`/roasters/${formData.roaster}`)
+        }
+    }
 }

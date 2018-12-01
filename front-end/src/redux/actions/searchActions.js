@@ -1,6 +1,7 @@
-import { SEARCH_ROASTERS, SEARCH_USERS, SEARCH_ROASTS } from './actionTypes';
+import { SEARCH_ROASTERS, SEARCH_USERS, SEARCH_ROASTS, CLEAR_SEARCH_RESULTS } from './actionTypes';
 
 export const searchRoasters = async(dispatch, formData, history) => {
+    console.log(formData);
     const response = await fetch(`${process.env.REACT_APP_API_HOST}/roasters/search?location=${formData.location}&query=${formData.query}`, {
         credentials: 'include',
     });
@@ -10,7 +11,9 @@ export const searchRoasters = async(dispatch, formData, history) => {
             type: SEARCH_ROASTERS,
             payload: parsed.data
         })
-        history.push(`/search/roasters/results?query=${formData.query}&location=denver`);
+        if(history){
+            history.push(`/search/roasters/results?query=${formData.query}&location=denver`);
+        }
     }
 }
 
@@ -42,4 +45,10 @@ export const searchRoasts = async(dispatch, formData) => {
             payload: parsedResponse.data
         })
     }
+}
+
+export const clearSearchResults = (dispatch) => {
+    dispatch({
+        type: CLEAR_SEARCH_RESULTS
+    })
 }

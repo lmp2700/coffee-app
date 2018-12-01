@@ -41,14 +41,27 @@ class NavbarComponent extends Component{
                       <DropdownItem tag={Link} to="/roasts">
                         Browse Roasts
                       </DropdownItem>
-                      <DropdownItem tag={Link} to="/roasters">
-                        Browse Roasters
-                      </DropdownItem>
                       <DropdownItem tag={Link} to="/roasts/reviews/new">
-                        Add a review
+                        Add a review of a Roast
                       </DropdownItem>
                       <DropdownItem tag={Link} to="/roasts/new">
                         Add a new roast
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </UncontrolledDropdown>
+                  <UncontrolledDropdown nav inNavbar>
+                    <DropdownToggle nav caret>
+                      Roasters
+                    </DropdownToggle>
+                    <DropdownMenu right>
+                      <DropdownItem tag={Link} to="/roasters">
+                        Browse Roasters
+                      </DropdownItem>
+                      <DropdownItem tag={Link} to="/roasters/reviews/new">
+                        Add a review of a Roaster
+                      </DropdownItem>
+                      <DropdownItem tag={Link} to="/roasters/new">
+                        Add a new roaster
                       </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>

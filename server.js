@@ -58,12 +58,14 @@ const friendRequestController = require('./controllers/friendRequestController')
 const roasterController = require('./controllers/roasterController');
 const roastController = require('./controllers/roastController');
 const roastReviewController = require('./controllers/roastReviewController');
+const roasterReviewController = require('./controllers/roasterReviewController');
 
 app.use('/api/v1/auth', authController);
 app.use('/api/v1/users', userController)
 app.use('/api/v1/roasters', roasterController);
 app.use('/api/v1/roasts', roastController);
 app.use('/api/v1/roasts/:id/reviews', roastReviewController);
+app.use('/api/v1/roasters/:id/reviews', roasterReviewController);
 app.use('/api/v1/friend-requests', requireLogin, friendRequestController);
 //SEND ALL OTHER GETS TO REACT APP
 app.get('*', (req,res) =>{

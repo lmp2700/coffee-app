@@ -28,6 +28,8 @@ const searchReducer = (state = initialState, action) => {
                 ...initialState,
                 userResults: action.payload
             }
+        case 'CLEAR_SEARCH_RESULTS':
+            return initialState
         default:
             return state;
     }

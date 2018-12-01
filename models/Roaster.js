@@ -14,7 +14,9 @@ const RoasterSchema = new Schema({
         type: String,
         unique: true
     },
-    keywords: [{type:String}]
+    //Keywords is used to store which search terms from google match
+    keywords: [{type:String}],
+    reviews: [{type: Schema.Types.ObjectId, ref: "RoasterReview"}]
 }, {
     timestamps: true
 })
