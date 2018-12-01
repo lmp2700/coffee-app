@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadRoaster } from '../../redux/actions/roasterActions';
+import { Button } from 'reactstrap'
 import './style.css';
+import NewRoastModal from './NewRoastModal/NewRoastModal';
 
 class ShowRoaster extends Component{
     componentDidMount(){
@@ -21,6 +23,7 @@ class ShowRoaster extends Component{
             <div>
                 <h1>{this.props.roaster.name}</h1>
                 <p>{this.props.roaster.address}</p>
+                <NewRoastModal/>
                 <h3>Featured roasts</h3>
                 {roasts}
             </div>

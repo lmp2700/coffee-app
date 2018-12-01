@@ -1,5 +1,6 @@
 const initialState = {
     roasts: [],
+    dataLoaded: false,
     currentRoast: {
         "name": null,
         "origin": null,
@@ -15,10 +16,16 @@ const initialState = {
 
 const roastReducer = (state=initialState, action) => {
     switch(action.type){
+        case "ROAST_LOADING":
+            return{
+                ...state,
+                dataLoaded: false
+            }
         case "LOAD_ROAST":
             return{
                 ...state,
-                currentRoast: action.payload
+                currentRoast: action.payload,
+                dataLoaded: true
             }
         case "CREATE_ROAST":
             return{

@@ -8,9 +8,12 @@ export const SET_USER = "SET_USER";
 export const UPDATE_USER = "UPDATE_USER";
 
 export const SEARCH_ROASTERS = "SEARCH_ROASTERS";
+export const ROASTERS_LOADING = "ROASTERS_LOADING";
 export const LOAD_ROASTERS = "LOAD_ROASTERS";
 export const LOAD_ROASTER = "LOAD_ROASTER";
 
+
+export const ROAST_LOADING = "ROAST_LOADING";
 export const SEARCH_ROASTS = "SEARCH_ROASTS";
 export const CREATE_ROAST = "CREATE_ROAST";
 export const LOAD_ROAST = "LOAD_ROAST";

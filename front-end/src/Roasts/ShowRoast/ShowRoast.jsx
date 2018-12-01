@@ -26,6 +26,7 @@ class ShowRoast extends Component{
         }
         const averageRating = totalRating / this.props.roast.reviews.length;
         return(
+            this.props.dataLoaded ? 
             <div>
                 <Row className="roast-detail">
                     <Col sm={8}>
@@ -51,13 +52,16 @@ class ShowRoast extends Component{
                     </Col>
                 </Row>
             </div>
+            :
+            <p>Loading...</p>
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return{
-        roast: state.roasts.currentRoast
+        roast: state.roasts.currentRoast,
+        dataLoaded: state.roasts.dataLoaded
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

@@ -81,7 +81,7 @@ class NavbarComponent extends Component{
                   Coffee
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem tag={Link} to="/coffee">
+                  <DropdownItem tag={Link} to="/roasts">
                     Browse Coffees
                   </DropdownItem>
                 </DropdownMenu>
