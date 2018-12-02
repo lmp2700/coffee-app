@@ -10,10 +10,10 @@ const RoastReviewSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Roast"
     },
-    title: {
-        type: String,
-        required: true
-    },
+    // title: {
+    //     type: String,
+    //     required: true
+    // },
     body: {
         type: String,
         required: true

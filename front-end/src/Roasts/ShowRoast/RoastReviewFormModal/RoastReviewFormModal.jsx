@@ -9,7 +9,6 @@ class RoastReviewFormModal extends Component{
           modal: false,
           form: {
               rating: null,
-              title: null,
               body: null
           }
         };
@@ -45,10 +44,10 @@ class RoastReviewFormModal extends Component{
                 <ModalHeader toggle={this.toggle}>Review {this.props.roast.name}</ModalHeader>
                 <ModalBody>
                     <Form>
-                        <FormGroup>
+                        {/* <FormGroup>
                             <Label>Title</Label>
                             <Input name="title" type="text" onChange={this.handleChange}></Input>
-                        </FormGroup>
+                        </FormGroup> */}
                         <FormGroup>
                             <Label>Rating</Label>
                             <Input name="rating" type="number" max="5" min="1" onChange={this.handleChange}></Input>
