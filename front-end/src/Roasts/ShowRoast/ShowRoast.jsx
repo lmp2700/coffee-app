@@ -44,7 +44,11 @@ class ShowRoast extends Component{
                             </Col>
                         </Row>
                         <Progress value={this.props.roast.color} />
-                        <RoastReviewFormModal roast={this.props.roast}/>
+                        {
+                            this.props.loggedIn ?
+                            <RoastReviewFormModal roast={this.props.roast}/> :
+                            null
+                        } 
                     </Col>
                     <Col sm={4}>
                         <h4>Reviews</h4>
@@ -61,7 +65,8 @@ class ShowRoast extends Component{
 const mapStateToProps = (state) => {
     return{
         roast: state.roasts.currentRoast,
-        dataLoaded: state.roasts.dataLoaded
+        dataLoaded: state.roasts.dataLoaded,
+        loggedIn: state.auth.loggedIn
     }
 }
 const mapDispatchToProps = (dispatch, ownProps) => {

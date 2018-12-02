@@ -14,8 +14,6 @@ class NavbarSearchForm extends Component {
     }
     handleNavbarSearch = (e) => {
         e.preventDefault();
-        console.log("SEARCHING ROASTERS")
-        console.log(this.state)
         this.props.searchRoasters(this.state);
     }
     handleChange = (e) => {
@@ -32,7 +30,7 @@ class NavbarSearchForm extends Component {
             <FormGroup className="navbar-search-inputs">
             <Input type="text" name="location" onChange={this.handleChange} placeholder="Near"/>
             </FormGroup>
-            <Button hidden className="btn-success">Search</Button>
+            <Button className="btn-success">Search</Button>
         </Form>
         );
     }

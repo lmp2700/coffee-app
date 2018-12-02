@@ -23,6 +23,26 @@ router.get('/search', async(req, res, next) => {
         console.log("SEARCHING WITH " + JSON.stringify(req.query));
         if(!req.query.location){
             console.log("LOCATOINLESS SEARCH");
+            if(req.user.profile.location){
+                console.log("THEY HAVE A THING ANYWAY")
+                const roasters = await Roaster.find({
+                    name: new RegExp(req.query.query, 'i'),
+                    address: new RegExp(req.query.location, 'i') 
+                })
+                return res.json({
+                    status: 200,
+                    data: roasters
+                })
+            }else{
+                console.log("TOTAL NOMAD")
+                const roasters = await Roaster.find({
+                    name: new RegExp(req.query.query, 'i')
+                })
+                return res.json({
+                    status: 200, 
+                    data: roasters
+                })
+            }
         }
         const existingSearch = await MapsQuery.find({
             query: req.query.query || " ",

@@ -135,10 +135,12 @@ class NewRoastReview extends Component{
                                     <Link to="/roasts/new"><Button>Add a new roast</Button></Link>
                                 </Col>
                             </Row>
+
+                            {/* should reviews have title? probably not...
                             <FormGroup>
                                 <Label>Title</Label>
                                 <Input name="title" type="text" onChange={this.handleChange}></Input>
-                            </FormGroup>
+                            </FormGroup> */}
                             <FormGroup>
                                 <Label>Rating</Label>
                                 <Input name="rating" type="number" max="5" min="1" onChange={this.handleChange}></Input>
