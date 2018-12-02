@@ -14,8 +14,7 @@ class ShowRoast extends Component{
         const reviews = this.props.roast.reviews.map((review)=>{
             return(
                 <div key={review._id}>
-                    <h4>{review.title} {review.rating}/5</h4>
-                    <h6>{review.reviewer.username}</h6>
+                    <h4>{review.reviewer.username} {review.rating}/5</h4>
                     <p>{review.body}</p>
                 </div>
             )
